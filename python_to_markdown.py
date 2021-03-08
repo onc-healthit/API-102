@@ -14,6 +14,7 @@ output_file = open("output.md", 'w')
 class Env(Enum):
     open = 1
     markdown = 2
+    clarification = 3
 
 def read_to_line_end(input_str, pos):
     pointer = pos
@@ -42,6 +43,13 @@ def process_open_line(line, output_file):
         print('here')
 
 def json_to_markdown(json):
+    sut = []
+    tlv = []
+
+    for step in json["steps"]:
+        sut.append(step["SUT"])
+        tlv.append(step["TLV"])
+
     output_file.write("## {}\n".format(json["section"]))
     output_file.write("<table>\n")
     output_file.write("\t<tr>\n")
@@ -51,21 +59,43 @@ def json_to_markdown(json):
 
     output_file.write("\t<tr>\n")
 
-    for step in json["steps"]:
-        output_file.write("\t\t<td>\n")
-        output_file.write("\t\t\t<ol>\n")
-        output_file.write("\t\t\t\t<li>{}</li>\n".format(step["SUT"]))
-        output_file.write("\t\t\t\t<li>{}</li>\n".format(step["TLV"]))
-        output_file.write("\t\t\t</ol>\n")
-        output_file.write("\t\t</td>\n")
+    output_file.write("\t\t<td>\n")
+    output_file.write("\t\t\t<ol>\n")
+
+    for entry in sut:
+        output_file.write("\t\t\t\t<li>{}</li>\n".format(entry))
+    
+    output_file.write("\t\t\t</ol>\n")
+    output_file.write("\t\t</td>\n")
+
+    output_file.write("\t\t<td>\n")
+    output_file.write("\t\t\t<ol>\n")
+
+    for entry in tlv:
+        output_file.write("\t\t\t\t<li>{}</li>\n".format(entry))
+
+    output_file.write("\t\t\t</ol>\n")
+    output_file.write("\t\t</td>\n")
 
     output_file.write("\t</tr>\n")
 
     output_file.write("</table>\n")
-    output_file.close()
-    print("here")
 
 def process_markdown(input_str, pos):
+    pointer = pos
+    c = input_str[pointer]
+
+    while c != '#':
+        pointer += 1
+        c = input_str[pointer]
+
+    input_str, pointer = read_to_line_end(input_str, pointer)
+
+    output_file.write(input_str + "\n")
+
+    return input_str, pointer
+
+def process_clarification(input_str, pos):
     pointer = pos
     c = input_str[pointer]
 
@@ -115,6 +145,15 @@ else:
                     pointer += 2
                     current_env = Env.open
                     continue
+            elif current_env == Env.clarification:
+                if c == '&':
+                    pointer += 2
+                    current_env = Env.open
+                    continue
+            if c == '-':
+                current_env = Env.clarification
+                _, pointer = process_clarification(tpt_template_str, pointer)
+
             if c != '/':
                 line, pointer = read_to_line_end(tpt_template_str, pointer)
                 process_open_line(line, output_file)

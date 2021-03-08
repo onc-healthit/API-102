@@ -10,8 +10,8 @@ tpJSON = load(g-10-TP.json)
 
 tpJSON(id: "g-10-iii-App-Registration")
 
-/~
+-&
 
 To clarify this section of the regulation text ...
 
-~/
+&-
