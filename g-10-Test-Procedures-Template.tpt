@@ -1,0 +1,17 @@
+<!--- This is a comment --->
+
+tpJSON = load(g-10-TP.json)
+
+/~
+
+# (g)(10) Certification Criteria Support Documentation
+
+~/
+
+tpJSON(id: "g-10-iii-App-Registration")
+
+/~
+
+To clarify this section of the regulation text ...
+
+~/
