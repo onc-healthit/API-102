@@ -1,0 +1,38 @@
+{
+    "g10-test-procedure": [
+       {
+        "id": "g-10-iii-App-Registration",  
+        "title": "Paragraph (g)(10)(iii) - Application registration",
+          "steps": [
+             {
+                "id": "APP-REGISTRATION-1",
+                "SUT": "The health IT developer demonstrates the Health IT Module supports application registration with an authorization server for the purposes of Electronic Health Information (EHI) access for single patients, including support for application registration functions to enable authentication and authorization in § 170.315(g)(10)(v).",
+                "TLV": "The tester verifies the Health IT Module supports application registration with an authorization server for the purposes of EHI access for single patients, including support for application registration functions to enable authentication and authorization in § 170.315(g)(10)(v)."
+             },
+             {
+                "id": "APP-REGISTRATION-2",
+                "SUT": "The health IT developer demonstrates the Health IT Module supports application registration with an authorization server for the purposes of EHI access for multiple patients including support for application registration functions to enable authentication and authorization in § 170.315(g)(10)(v).",
+                "TLV": "The tester verifies the Health IT Module supports application registration with an authorization server for the purposes of EHI access for multiple patients including support for application registration functions to enable authentication and authorization in § 170.315(g)(10)(v)."
+             }
+          ]
+       },
+       {
+          "id": "g-10-iv-Secure-connection",
+          "title": "Paragraph (g)(10)(iv) – Secure connection",
+          "steps": [
+             {
+                "group": "Secure Connection"
+             },
+             {
+                "id": "SECURE-CONNECTION-1",
+                "SUT": "For all transmissions between the Health IT Module and the application, the health IT developer demonstrates the use of a secure and trusted connection in accordance with the implementation specifications adopted in § 170.215(a)(2) and § 170.215(a)(3), including:",
+                "bullets": [
+                   "Using TLS version 1.2 or higher; and",
+                   "Conformance to FHIR Communications Security requirements."
+                ],
+                "TLV": "For all transmissions between the Health IT Module and the application, the tester verifies the use of a secure and trusted connection in accordance with the implementation specifications adopted in § 170.215(a)(2) and § 170.215(a)(3), including:"
+             }
+          ]
+       }
+    ]
+   }
