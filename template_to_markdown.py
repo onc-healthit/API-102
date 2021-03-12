@@ -24,16 +24,9 @@ def json_to_markdown(data):
 
     output_str += "## {}\n".format(data["title"])
 
-    sut = []
-    tlv = []
-    for step in data["steps"]:
-        sut.append(step["SUT"])
-        tlv.append(step["TLV"])
-
     output_str += "<table>\n"
     output_str += "\t<tr>\n"
     output_str += "\t\t<th>System Under Test</th>\n"
-    output_str += "\t\t<th>Lab Verification</th>\n"
     output_str += "\t</tr>\n"
 
     output_str += "\t<tr>\n"
@@ -41,18 +34,12 @@ def json_to_markdown(data):
     output_str += "\t\t<td>\n"
     output_str += "\t\t\t<ol>\n"
 
-    for entry in sut:
-        output_str += "\t\t\t\t<li>{}</li>\n".format(entry)
+    for entry in data["table"]:
+        output_str += "\t\t\t\t<u><b>{}</b></u>\n".format(entry["group"])
+
+        for step in entry["steps"]:
+            output_str += "\t\t\t\t<li>{}</li>\n".format(step["SUT"])
     
-    output_str += "\t\t\t</ol>\n"
-    output_str += "\t\t</td>\n"
-
-    output_str += "\t\t<td>\n"
-    output_str += "\t\t\t<ol>\n"
-
-    for entry in tlv:
-        output_str += "\t\t\t\t<li>{}</li>\n".format(entry)
-
     output_str += "\t\t\t</ol>\n"
     output_str += "\t\t</td>\n"
 
