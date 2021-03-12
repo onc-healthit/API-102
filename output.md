@@ -20,4 +20,27 @@
 </table>
 
 
-To clarify this section of the regulation text ...
+So to clarify here, during app reigstration this this and this
+
+## Paragraph (g)(10)(iv) – Secure connection
+<table>
+	<tr>
+		<th>System Under Test</th>
+	</tr>
+	<tr>
+		<td>
+			<ol>
+				<u><b>Secure Connection</b></u>
+				<li>For all transmissions between the Health IT Module and the application, the health IT developer demonstrates the use of a secure and trusted connection in accordance with the implementation specifications adopted in § 170.215(a)(2) and § 170.215(a)(3), including:
+					<ul>
+						<li>Using TLS version 1.2 or higher; and</li>
+						<li>Conformance to FHIR Communications Security requirements.</li>
+					</ul>
+				</li>
+			</ol>
+		</td>
+	</tr>
+</table>
+
+
+Secure connections are **very** important!!

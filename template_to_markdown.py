@@ -38,7 +38,20 @@ def json_to_markdown(data):
         output_str += "\t\t\t\t<u><b>{}</b></u>\n".format(entry["group"])
 
         for step in entry["steps"]:
-            output_str += "\t\t\t\t<li>{}</li>\n".format(step["SUT"])
+            bulleted_list = ""
+
+            if "bullets" in step:
+                bulleted_list += "\t\t\t\t\t<ul>\n"
+
+                for bullet in step["bullets"]:
+                    bulleted_list += "\t\t\t\t\t\t<li>{}</li>\n".format(bullet)
+
+                bulleted_list += "\t\t\t\t\t</ul>\n"
+            
+            if bulleted_list != "":
+                output_str += "\t\t\t\t<li>{}\n{}\t\t\t\t</li>\n".format(step["SUT"], bulleted_list)
+            else:
+                output_str += "\t\t\t\t<li>{}</li>\n".format(step["SUT"])
     
     output_str += "\t\t\t</ol>\n"
     output_str += "\t\t</td>\n"
@@ -82,22 +95,26 @@ else:
     # Read in json from file
     json_tp_file = json.load(open(file_name, 'r'))[file_name[:-5]]
 
+    # Search for the first load function
     json_search_function = "$tpJSON(id:"
     index = tpt_template_str.find(json_search_function)
 
-    function_line, pos = read_to_line_end(tpt_template_str, index)
+    # Will continue looping for each load function present in template
+    while index > 0:
+        function_line, pos = read_to_line_end(tpt_template_str, index)
 
-    id_regex = re.compile('"(.*?)"')
-    identifier = id_regex.findall(function_line)[0]
+        id_regex = re.compile('"(.*?)"')
+        identifier = id_regex.findall(function_line)[0]
 
-    json_id_data = find_data_by_identifier(json_tp_file, identifier)
+        json_id_data = find_data_by_identifier(json_tp_file, identifier)
 
-    tpt_template_str = tpt_template_str.replace(function_line, json_to_markdown(json_id_data))
+        tpt_template_str = tpt_template_str.replace(function_line, json_to_markdown(json_id_data))
 
+        index = tpt_template_str.find(json_search_function) # Search for another load function
+
+    # Output final result to file
     output_file = open("output.md", 'w')
-
     output_file.write(tpt_template_str)
-
     output_file.close()
 
-    print("here")
+    print("Done! Take a look at output.md")
