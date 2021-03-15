@@ -2,3 +2,7 @@
 $load(g10-test-procedure.json)
 
 # (g)(10) Certification Criteria Support Documentation
+
+$tpJSON(id: "g-10-iv-Secure-connection")
+
+# This is why this is so important!!
