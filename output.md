@@ -2,7 +2,6 @@
 
 
 # (g)(10) Certification Criteria Support Documentation
-
 ## Paragraph (g)(10)(iii) - Application registration
 <table>
 	<tr>
@@ -18,9 +17,6 @@
 		</td>
 	</tr>
 </table>
-
-
-So to clarify here, during app reigstration this this and this
 
 ## Paragraph (g)(10)(iv) – Secure connection
 <table>
@@ -41,6 +37,3 @@ So to clarify here, during app reigstration this this and this
 		</td>
 	</tr>
 </table>
-
-
-Secure connections are **very** important!!

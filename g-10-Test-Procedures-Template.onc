@@ -2,11 +2,3 @@
 $load(g10-test-procedure.json)
 
 # (g)(10) Certification Criteria Support Documentation
-
-$tpJSON(id: "g-10-iii-App-Registration")
-
-So to clarify here, during app reigstration this this and this
-
-$tpJSON(id: "g-10-iv-Secure-connection")
-
-Secure connections are **very** important!!

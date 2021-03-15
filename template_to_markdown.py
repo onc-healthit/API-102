@@ -95,6 +95,16 @@ else:
     # Read in json from file
     json_tp_file = json.load(open(file_name, 'r'))[file_name[:-5]]
 
+    
+    # Convert test procedure JSON data to HTML
+    tp_as_markdown_dict = {}
+    entry_ids = []
+
+    for entry in json_tp_file:
+        #tp_as_markdown_dict.append((entry["id"], json_to_markdown(entry)))
+        tp_as_markdown_dict[entry["id"]] =  entry
+        entry_ids.append(entry["id"])
+
     # Search for the first load function
     json_search_function = "$tpJSON(id:"
     index = tpt_template_str.find(json_search_function)
@@ -108,9 +118,25 @@ else:
 
         json_id_data = find_data_by_identifier(json_tp_file, identifier)
 
-        tpt_template_str = tpt_template_str.replace(function_line, json_to_markdown(json_id_data))
+        entry_index = entry_ids.index(identifier)
+
+        unreferenced_prev_tps = ""
+        if entry_index > 0:
+            for i in range(entry_index):
+                unreferenced_prev_tps += json_to_markdown(tp_as_markdown_dict[entry_ids[i]])
+
+            unreferenced_prev_tps += "\n"
+            entry_ids = entry_ids[(entry_index + 1):]
+
+        tpt_template_str = tpt_template_str.replace(function_line, unreferenced_prev_tps + json_to_markdown(json_id_data))
+
+        # tp_as_markdown_dict = list(filter(lambda x: x[0] != identifier, tp_as_markdown_dict)) # Remove what we just added from the markdown list
 
         index = tpt_template_str.find(json_search_function) # Search for another load function
+
+    # Any remaining entries get tacked onto the end
+    for entry in entry_ids:
+        tpt_template_str += "\n" + json_to_markdown(find_data_by_identifier(json_tp_file, entry))
 
     # Output final result to file
     output_file = open("output.md", 'w')
