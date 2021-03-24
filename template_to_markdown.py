@@ -1,7 +1,7 @@
 # Imports
-
 import re # Regular Expressions
 import json
+import os
 
 # Functions
 def read_to_line_end(input_str, pos):
@@ -61,37 +61,16 @@ def json_to_markdown(data):
 
     return output_str
 
-# Main Code
-
-choice = input("Press \"A\" to convert all .tpt files or enter a specific file name: ")
-
-if choice == "A":
-    # TODO: Loop through all tpt files and process accordingly
-    print("Placeholder")
-else:
-    file_read = False
-
-    tpt_template = None
-
-    # Attempt to read in file and re-prompt if not found
-    while not file_read:
-        try:
-            tpt_template = open(choice, 'r')
-            file_read = True
-            tpt_template_str = tpt_template.read()
-        except FileNotFoundError:
-            choice = input("File not found, enter a different file name: ")
-            continue
-        
-    tpt_template_str = re.sub('<!--(.*?)-->', "", tpt_template_str) # Strip comments
+def process_template(onc_template_str):
+    onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
 
     # Find $load()
     load_regex_str = "\$load\(.*.json\)"
     load_regex = re.compile(load_regex_str)
-    load_command = load_regex.findall(tpt_template_str)[0]
+    load_command = load_regex.findall(onc_template_str)[0]
     file_name = load_command[6:][:-1] # Extract file name
 
-    tpt_template_str = tpt_template_str.replace(load_command, "") # Remove load command from output
+    onc_template_str = onc_template_str.replace(load_command, "") # Remove load command from output
 
     # Read in json from file
     json_tp_file = json.load(open(file_name, 'r'))[file_name[:-5]]
@@ -106,11 +85,11 @@ else:
 
     # Search for the first load function
     json_search_function = "$tpJSON(id:"
-    index = tpt_template_str.find(json_search_function)
+    index = onc_template_str.find(json_search_function)
 
     # Will continue looping for each load function present in template
     while index > 0:
-        function_line, pos = read_to_line_end(tpt_template_str, index)
+        function_line, pos = read_to_line_end(onc_template_str, index)
 
         id_regex = re.compile('"(.*?)"')
         identifier = id_regex.findall(function_line)[0]
@@ -127,17 +106,55 @@ else:
             unreferenced_prev_tps += "\n"
             entry_ids = entry_ids[(entry_index + 1):]
 
-        tpt_template_str = tpt_template_str.replace(function_line, unreferenced_prev_tps + json_to_markdown(json_id_data))
+        onc_template_str = onc_template_str.replace(function_line, unreferenced_prev_tps + json_to_markdown(json_id_data))
 
-        index = tpt_template_str.find(json_search_function) # Search for another load function
+        index = onc_template_str.find(json_search_function) # Search for another load function
 
     # Any remaining entries get tacked onto the end
     for entry in entry_ids:
-        tpt_template_str += "\n" + json_to_markdown(find_data_by_identifier(json_tp_file, entry))
+        onc_template_str += "\n" + json_to_markdown(find_data_by_identifier(json_tp_file, entry))
 
     # Output final result to file
-    output_file = open("output.md", 'w')
-    output_file.write(tpt_template_str)
+    output_file_name = file_name.replace(".json", ".md") # Use same file name just with markdown extension
+    output_file = open(output_file_name, 'w')
+    output_file.write(onc_template_str)
     output_file.close()
 
-    print("Done! Take a look at output.md")
+    print("Done! Take a look at {}".format(output_file_name))
+
+# Main Code
+
+choice = input("Press \"A\" to convert all .onc files or enter a specific file name: ")
+
+if choice == "A":
+    # TODO: Loop through all onc files and process accordingly
+    root_dir = os.getcwd() # Get current working directory
+
+    for subdir, dirs, files in os.walk(root_dir):
+        for file in files:
+            ext = os.path.splitext(file)[-1].lower()
+            if ext == ".onc":
+                onc_template = open(file, 'r')
+                onc_template_str = onc_template.read()
+                print("Processing {}...".format(file))    
+                process_template(onc_template_str)
+else:
+    file_read = False
+
+    onc_template = None
+
+    # Attempt to read in file and re-prompt if not found
+    while not file_read:
+        try:
+            onc_template = open(choice, 'r')
+            file_read = True
+            onc_template_str = onc_template.read()
+            onc_template.close()
+        except FileNotFoundError:
+            choice = input("File not found, enter a different file name: ")
+            continue
+    
+    print("Processing {}...".format(choice))    
+    process_template(onc_template_str)
+
+print("All processing complete!")
