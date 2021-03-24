@@ -1,6 +1,3 @@
-
-
-
 # (g)(10) Certification Criteria Support Documentation
 
 ## Paragraph (g)(10)(iii) - Application registration

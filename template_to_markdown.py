@@ -5,6 +5,18 @@ import os
 
 # Functions
 def read_to_line_end(input_str, pos):
+    """Builds a string from a position to the end of the line
+    and returns the result.
+
+    Parameters
+    ----------
+    input_str : str, required
+        String containing template file contense (default is None)
+
+    pos : int, required
+        Integer represetning the position in the input_str we start
+        reading at and continue to first new line.
+    """
     pointer = pos
     c = input_str[pointer]
 
@@ -117,17 +129,16 @@ def process_template(onc_template_str):
     # Output final result to file
     output_file_name = file_name.replace(".json", ".md") # Use same file name just with markdown extension
     output_file = open(output_file_name, 'w')
+    onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
     output_file.write(onc_template_str)
     output_file.close()
 
     print("Done! Take a look at {}".format(output_file_name))
 
 # Main Code
-
 choice = input("Press \"A\" to convert all .onc files or enter a specific file name: ")
 
 if choice == "A":
-    # TODO: Loop through all onc files and process accordingly
     root_dir = os.getcwd() # Get current working directory
 
     for subdir, dirs, files in os.walk(root_dir):
@@ -140,8 +151,6 @@ if choice == "A":
                 process_template(onc_template_str)
 else:
     file_read = False
-
-    onc_template = None
 
     # Attempt to read in file and re-prompt if not found
     while not file_read:
