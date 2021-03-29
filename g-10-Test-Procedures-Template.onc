@@ -3,6 +3,9 @@ $load(g10-test-procedure.json)
 
 # (g)(10) Certification Criteria Support Documentation
 
-$tpJSON(id: "g-10-iv-Secure-connection")
+$tpJSON(id: "g-10-iii-App-Registration")
+$item({
+    "id": "g-10-iii-App-Registration-1", 
+    "clarification": "This is a clarification"
+    })
 
-# This is why this is so important!!

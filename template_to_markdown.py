@@ -26,6 +26,25 @@ def read_to_line_end(input_str, pos):
 
     return input_str[pos:pointer], pointer
 
+def read_to_item_end(input_str, pos):
+    pointer = pos
+    c = input_str[pointer]
+
+    done = False
+
+    while not done:
+        while c != "\n":
+            pointer += 1
+            c = input_str[pointer]
+        
+        if input_str[pointer + 1] == "\n":
+            done = True
+        else:
+            pointer += 1
+            c = input_str[pointer]
+
+    return input_str[pos:pointer], pointer
+
 def find_data_by_identifier(json, identifier):
     for entry in json:
         if entry["id"] == identifier:
@@ -102,6 +121,15 @@ def process_template(onc_template_str):
     # Will continue looping for each load function present in template
     while index > 0:
         function_line, pos = read_to_line_end(onc_template_str, index)
+
+        next_line, pos2 = read_to_line_end(onc_template_str, pos + 1)
+
+        if "$item" in next_line:
+            test, pos3 = read_to_item_end(onc_template_str, pos + 1)
+            test = test.replace("$item(", "")
+            test = test[:-1]
+            y = json.loads(test)
+            print("here")
 
         id_regex = re.compile('"(.*?)"')
         identifier = id_regex.findall(function_line)[0]
