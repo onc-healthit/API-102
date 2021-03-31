@@ -15,4 +15,13 @@ $item([
     }
     ])
 
-More generalized clarification, not meant to conver a specific item.
+More generalized clarification, not meant to cover a specific item.
+
+$tpJSON(id: "g-10-v-a-Authentication-and-authorization-for-patient-and-user-scopes")
+$item([
+    {
+        "id": "g-10-v-a-Authentication-and-authorization-for-patient-and-user-scopes-8", 
+        "clarification": "Whew! That is a lot of scopes"
+    }
+    ])
+

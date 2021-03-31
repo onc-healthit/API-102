@@ -91,16 +91,18 @@ def json_to_markdown(data, item_clarifications = None):
                 bulleted_list += "\t\t\t\t\t</ul>\n"
             
             if bulleted_list != "":
-                if item_clarifications:
-                    print("TODO")
+                if clarification_for_item(step["id"], item_clarifications):
+                    output_str += "\t\t\t\t<li>{}\n{}\t\t\t\t\t<br>Additional Information: {}<br><br>\n\t\t\t\t</li>\n".format(
+                        step["SUT"], 
+                        bulleted_list, 
+                        clarification_for_item(step["id"], item_clarifications))
                 else:
                     output_str += "\t\t\t\t<li>{}\n{}\t\t\t\t</li>\n".format(step["SUT"], bulleted_list)
             else:
                 if clarification_for_item(step["id"], item_clarifications):
                     output_str += "\t\t\t\t<li>{}<br><br>Additional Information: {}<br><br></li>\n".format(
                         step["SUT"], 
-                        clarification_for_item(step["id"], 
-                        item_clarifications))
+                        clarification_for_item(step["id"], item_clarifications))
                 else:
                     output_str += "\t\t\t\t<li>{}</li>\n".format(step["SUT"])
     
