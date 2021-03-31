@@ -18,6 +18,25 @@
                ]
             }
          ]
+      },
+      {
+         "id": "g-10-iv-Secure-connection",
+         "title": "Paragraph (g)(10)(iv) – Secure connection",
+         "table": [
+            {
+               "group": "Secure Connection",
+               "steps": [
+                  {
+                     "id": "g-10-iv-Secure-connection-1",
+                     "SUT": "For all transmissions between the Health IT Module and the application, the health IT developer demonstrates the use of a secure and trusted connection in accordance with the implementation specifications adopted in § 170.215(a)(2) and § 170.215(a)(3), including:",
+                     "bullets": [
+                        "Using TLS version 1.2 or higher; and",
+                        "Conformance to FHIR Communications Security requirements."
+                     ]
+                  }
+               ]
+            }
+         ]
       }
    ]
 }

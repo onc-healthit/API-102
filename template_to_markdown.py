@@ -50,7 +50,18 @@ def find_data_by_identifier(json, identifier):
         if entry["id"] == identifier:
             return entry
 
-def json_to_markdown(data):
+def clarification_for_item(step_id, item_clarifications):
+    # If empty return None
+    if not item_clarifications:
+        return None
+
+    for item_clarification in item_clarifications:
+        if step_id == item_clarification["id"]:
+            return item_clarification["clarification"]
+    
+    return None
+
+def json_to_markdown(data, item_clarifications = None):
     output_str = ""
 
     output_str += "## {}\n".format(data["title"])
@@ -80,9 +91,18 @@ def json_to_markdown(data):
                 bulleted_list += "\t\t\t\t\t</ul>\n"
             
             if bulleted_list != "":
-                output_str += "\t\t\t\t<li>{}\n{}\t\t\t\t</li>\n".format(step["SUT"], bulleted_list)
+                if item_clarifications:
+                    print("TODO")
+                else:
+                    output_str += "\t\t\t\t<li>{}\n{}\t\t\t\t</li>\n".format(step["SUT"], bulleted_list)
             else:
-                output_str += "\t\t\t\t<li>{}</li>\n".format(step["SUT"])
+                if clarification_for_item(step["id"], item_clarifications):
+                    output_str += "\t\t\t\t<li>{}<br><br>Additional Information: {}<br><br></li>\n".format(
+                        step["SUT"], 
+                        clarification_for_item(step["id"], 
+                        item_clarifications))
+                else:
+                    output_str += "\t\t\t\t<li>{}</li>\n".format(step["SUT"])
     
     output_str += "\t\t\t</ol>\n"
     output_str += "\t\t</td>\n"
@@ -122,14 +142,18 @@ def process_template(onc_template_str):
     while index > 0:
         function_line, pos = read_to_line_end(onc_template_str, index)
 
-        next_line, pos2 = read_to_line_end(onc_template_str, pos + 1)
+        next_line, _ = read_to_line_end(onc_template_str, pos + 1)
+
+        item_entry_json = None
 
         if "$item" in next_line:
-            test, pos3 = read_to_item_end(onc_template_str, pos + 1)
-            test = test.replace("$item(", "")
-            test = test[:-1]
-            y = json.loads(test)
-            print("here")
+            item_entry, _ = read_to_item_end(onc_template_str, pos + 1)
+
+            onc_template_str = onc_template_str.replace(item_entry, "") # Remove this entry from the string we're building
+
+            item_entry = item_entry.replace("$item(", "")
+            item_entry = item_entry[:-1] # Remove the last close parathesis
+            item_entry_json = json.loads(item_entry)
 
         id_regex = re.compile('"(.*?)"')
         identifier = id_regex.findall(function_line)[0]
@@ -145,8 +169,10 @@ def process_template(onc_template_str):
 
             unreferenced_prev_tps += "\n"
             entry_ids = entry_ids[(entry_index + 1):]
+        #else:
+        #    entry_ids = []
 
-        onc_template_str = onc_template_str.replace(function_line, unreferenced_prev_tps + json_to_markdown(json_id_data))
+        onc_template_str = onc_template_str.replace(function_line, unreferenced_prev_tps + json_to_markdown(json_id_data, item_entry_json))
 
         index = onc_template_str.find(json_search_function) # Search for another load function
 
