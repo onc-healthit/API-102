@@ -1,5 +1,11 @@
 import requests
 import json
+import re
+
+def strip_html(data):
+    # https://stackoverflow.com/a/3398894
+    p = re.compile(r'<.*?>')
+    return p.sub('', data).strip()
 
 base_url = "https://healthit.gov/test-method"
 criterion = "standardized-api-patient-and-population-services"
@@ -23,7 +29,8 @@ for entity_id in entity_ids_json:
     with open('cached_response.json') as f:
         data_json = json.load(f)
 
-    print(data_json["field_standard_s_referenced"])
+    print(strip_html(data_json["field_standard_s_referenced"][0]["processed"]))
+    #print((data_json["field_standard_s_referenced"][0]["processed"]))
 
     break
 
