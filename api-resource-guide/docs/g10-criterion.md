@@ -43,15 +43,45 @@ This section considers the standardized API for patient and population services 
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-$ref(g-10:paragraph-10-i-a:1)
+$ref(g-10:CCG:paragraph-10-i-a)
 
-*Additional Clarifications:*
+$ref(g-10:CCG:paragraph-10-i-a:1)
+
+### Supported Search Operations (Single Patient) - § 170.315(g)(10)(ii)(A)
+**Regulation text**: (ii) Supported search operations. (A) Respond to search requests for a single patient's data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(2), specifically the mandatory capabilities described in “US Core Server CapabilityStatement.”
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG:paragraph-10-ii-a)
+
+### Supported Search Operations (Multiple Patients) - § 170.315(g)(10)(ii)(B)
+**Regulation text**: (B) Respond to search requests for multiple patients' data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(4)
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG:paragraph-10-ii-b)
+
+*Additional Clarifications*:
+
+- The scope of data available in the data responses defined in § 170.315(g)(10)(i) must be supported for searches for multiple patients via the supported search operations finalized in § 170.315(g)(10)(ii).
+- The HL7 FHIR Bulk Data Access (Flat FHIR) (v1.0.0: STU 1) implementation specification adopted in § 170.215(a)(4) includes mandatory support for the “group-export” “OperationDefinition.”
 
 ### *Other standards not directly referenced in § 170.315(g)(10)*
 
 #### Bulk FHIR Import
 We have not included a requirement for Bulk FHIR import because the standards for these features are still being developed by industry. Applications or systems seeking to import information formatting according to the HL7® FHIR Bulk Data Access (Flat FHIR) (V1.0.0:STU 1) can use several methods developed by industry, or can refer to Bulk FHIR import methods being defined by HL7 at the HL7 FHIR Bulk Data GitHub page.
 
+## Test Procedures
+### Paragraph (g)(10)(iii) – Application registration
+**Application Registration**
+
+1. The health IT developer demonstrates the Health IT Module supports application registration with an authorization server for the purposes of Electronic Health Information (EHI) access for single patients, including support for application registration functions to enable authentication and authorization in § 170.315(g)(10)(v).
+1. The health IT developer demonstrates the Health IT Module supports application registration with an authorization server for the purposes of EHI access for multiple patients including support for application registration functions to enable authentication and authorization in § 170.315(g)(10)(v).
+
+### Paragraph (g)(10)(iv) – Secure connection
+**Secure connection**
+
+$ref(g-10:TP:secure-connection)
 
 
 --8<-- "includes/abbreviations.md"
