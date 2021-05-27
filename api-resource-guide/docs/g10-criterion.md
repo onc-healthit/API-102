@@ -15,7 +15,8 @@ This section considers the standardized API for patient and population services 
 - **Inferno Program Edition**
     - The Inferno Program Edition is used for (g)(10) API testing for the ONC Health IT Certification Program. The Inferno Program Edition is a streamlined testing tool for services seeking to meet the requirements of the Standardized API for Patient and Population Services criterion finalized at § 170.315(g)(10). It is based on the requirements in the ONC Cures Act Final Rule and associated test procedure for § 170.315(g)(10). This tool is used for testing and certification to the § 170.315(g)(10) certification criterion for the ONC Health IT Certification Program.
 
-## Certification Companion Guide clarifications
+## Technical Explanations and Clarifications
+### Applies to Entire Criterion
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
 - On December 31, 2022, the API certification criterion in § 170.315(g)(10) replaces the “application access—data category request” certification criterion (§ 170.315(g)(8)).
@@ -36,6 +37,15 @@ This section considers the standardized API for patient and population services 
 
 - A Health IT Module must be conformant to the US Core IG for all Choices and References included in its standardized API, and cannot misrepresent Choices via the standardized API (e.g. a Health IT Module cannot transform “integer” values to “string” values).
 - A health IT developer must document which US Core IG Choices and References are supported by their Health IT Module via public technical documentation to meet the requirements in § 170.315(g)(10)(viii) and the transparency conditions in § 170.404(a)(2).
+
+### Data Response (Single Patient) - § 170.315(g)(10)(i)(A)
+**Regulation text**: (i) Data response. (A) Respond to requests for a single patient's data according to the standard adopted in § 170.215(a)(1) and implementation specification adopted in § 170.215(a)(2), including the mandatory capabilities described in “US Core Server CapabilityStatement,” for each of the data included in the standard adopted in § 170.213. All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:paragraph-10-i-a:1)
+
+*Additional Clarifications:*
 
 ### *Other standards not directly referenced in § 170.315(g)(10)*
 
