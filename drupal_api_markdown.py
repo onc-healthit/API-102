@@ -4,6 +4,28 @@ import re
 import requests
 import json
 
+def read_to_line_end(input_str, pos):
+    """Builds a string from a position to the end of the line
+    and returns the result.
+
+    Parameters
+    ----------
+    input_str : str, required
+        String containing template file contense (default is None)
+
+    pos : int, required
+        Integer represetning the position in the input_str we start
+        reading at and continue to first new line.
+    """
+    pointer = pos
+    c = input_str[pointer]
+
+    while c != "\n":
+        pointer += 1
+        c = input_str[pointer]
+
+    return input_str[pos:pointer], pointer
+
 def strip_html(data):
     # https://stackoverflow.com/a/3398894
     p = re.compile(r'<.*?>')
@@ -35,23 +57,47 @@ def gather_data_from_web():
             data_json = json.load(f)
 
         element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
-        data = data_json["field_technical_explanations_and"][0]["processed"]
+        data = data_json["field_technical_explanations_and"][0]["processed"].encode('utf8')
 
         web_data[element] = data
 
+    # with open('web_data_2.json', 'w') as f:
+    #     json.dump(web_data, f)
     return web_data
 
 def process_template(onc_template_str):
+    #web_data = gather_data_from_web()
+    # Temp, read from file
+    web_data = None
+    with open('web_data.json') as f:
+        web_data = json.load(f)
+
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
-    return 1
+
+    # Search for the first ref
+    json_search_function = "$ref("
+    index = onc_template_str.find(json_search_function)
+
+    # Will continue looping for each load function present in template
+    while index > 0:
+        function_line, pos = read_to_line_end(onc_template_str, index)
+
+        referenced_paragraph = re.findall('"([^"]*)"', function_line)[0]
+
+        onc_template_str = onc_template_str.replace(function_line, web_data[referenced_paragraph])
+        index = onc_template_str.find(json_search_function) # Search for another load function
+    
+    # Output final result to file
+    # output_file_name = file_name.replace(".json", ".md") # Use same file name just with markdown extension
+    output_file_name = "simple.md"
+    output_file = open(output_file_name, 'w')
+    onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
+    output_file.write(onc_template_str)
+    output_file.close()
+
+    print("Done! Take a look at {}".format(output_file_name))
 
 # Main Code
-#web_data = gather_data_from_web()
-# Temp, read from file
-web_data = None
-with open('web_data.json') as f:
-    web_data = json.load(f)
-
 choice = input("Press \"A\" to convert all .onc files or enter a specific file name: ")
 
 if choice == "A":
