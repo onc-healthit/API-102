@@ -10,6 +10,8 @@ def strip_html(data):
     return p.sub('', data).strip()
 
 def gather_data_from_web():
+    web_data = {}
+
     base_url = "https://healthit.gov/test-method"
     criterion = "standardized-api-patient-and-population-services"
 
@@ -32,18 +34,23 @@ def gather_data_from_web():
         with open('cached_response.json') as f:
             data_json = json.load(f)
 
-        print(strip_html(data_json["field_standard_s_referenced"][0]["processed"]))
-        #print((data_json["field_standard_s_referenced"][0]["processed"]))
+        element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
+        data = data_json["field_technical_explanations_and"][0]["processed"]
 
-    #print(entity_ids_json)
-    return 1
+        web_data[element] = data
+
+    return web_data
 
 def process_template(onc_template_str):
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
     return 1
 
 # Main Code
-web_data = gather_data_from_web()
+#web_data = gather_data_from_web()
+# Temp, read from file
+web_data = None
+with open('web_data.json') as f:
+    web_data = json.load(f)
 
 choice = input("Press \"A\" to convert all .onc files or enter a specific file name: ")
 
