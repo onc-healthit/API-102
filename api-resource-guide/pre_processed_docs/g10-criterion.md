@@ -73,7 +73,4 @@ We have not included a requirement for Bulk FHIR import because the standards fo
 ### Paragraph (g)(10)(iv) – Secure connection
 **Secure connection**
 
-$ref(g-10:TP:secure-connection)
-
-
 --8<-- "includes/abbreviations.md"

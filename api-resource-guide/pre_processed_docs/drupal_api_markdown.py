@@ -42,17 +42,13 @@ def gather_data_from_web():
     base_url = "https://healthit.gov/test-method"
     criterion = "standardized-api-patient-and-population-services"
 
-    # entity_ids_json = requests.get("{}/{}?_format=json".format(base_url, criterion)).json()["field_clarification_table"]
+    #entity_ids_json = requests.get("{}/{}?_format=json".format(base_url, criterion)).json()["field_clarification_table"]
     # Reading cached file (temporary)
     entity_ids_json = None
     with open('cached_entities.json') as f:
         entity_ids_json = json.load(f)["field_clarification_table"]
 
     data_url = "https://healthit.gov/entity/paragraph"
-
-    ccg_json = {criterion : []}
-
-    paragraph_identifier = 1
 
     for entity_id in entity_ids_json:
         #data_json = requests.get("{}/{}?_format=json".format(data_url, entity_id["target_id"])).json()
@@ -62,7 +58,7 @@ def gather_data_from_web():
             data_json = json.load(f)
 
         element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
-        data = data_json["field_technical_explanations_and"][0]["processed"].encode('utf8')
+        data = data_json["field_technical_explanations_and"][0]["processed"]
 
         web_data[element] = data
 
@@ -92,32 +88,32 @@ def process_template(onc_template_str, file_name):
         referenced_paragraph_key = re.findall('"([^"]*)"', function_line)[0] # Extracting paragraph key
         referenced_paragraph_data = web_data[referenced_paragraph_key]
 
-        clarifications_list = re.findall('<ul [^}]*>[^}]*<\/ul>', referenced_paragraph_data)[0] # Extracting unordered list
+        clarifications_list = re.findall('<ul ?[^}]*>[^}]*<\/ul>', referenced_paragraph_data) # Extracting unordered list
+
+        clarifications_list = clarifications_list[0]
 
         onc_template_str = onc_template_str.replace(function_line, clarifications_list)
         index = onc_template_str.find(json_search_function) # Search for another ref function
     
     # Output final result to file
-    output_file_name = file_name.replace(".onc", ".md") # Use same file name just with markdown extension
-    # output_file_name = "simple.md"
-    output_file = open(output_file_name, 'w')
+    output_file = open("{}\\api-resource-guide\\docs\\{}".format(os.getcwd(), file_name), 'w', encoding='utf-8')
     onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
     output_file.write(onc_template_str)
     output_file.close()
 
-    print("Done! Take a look at {}".format(output_file_name))
+    print("Done processing {}".format(file_name))
 
 # Main Code
 choice = input("Press \"A\" to convert all .onc files or enter a specific file name: ")
 
 if choice == "A":
-    root_dir = os.getcwd() # Get current working directory
+    directory = "{}\\api-resource-guide\\pre_processed_docs".format(os.getcwd())
 
-    for subdir, dirs, files in os.walk(root_dir):
+    for subdir, dirs, files in os.walk(directory):
         for file in files:
             ext = os.path.splitext(file)[-1].lower()
-            if ext == ".onc":
-                onc_template = open(file, 'r')
+            if ext == ".md":
+                onc_template = open("{}\\{}".format(directory, file), 'r', encoding="utf8")
                 onc_template_str = onc_template.read()  
                 process_template(onc_template_str, file)
 else:
