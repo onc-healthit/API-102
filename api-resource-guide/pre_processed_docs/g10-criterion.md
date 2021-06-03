@@ -39,24 +39,101 @@ $ref(g-10:CCG["Applies to Entire Criterion"])
 
 $ref(g-10:CCG["Paragraph (10)(i)(A)"])
 
+### Data Response (Multiple Patients) - § 170.315(g)(10)(i)(B)
+**Regulation text**: (B) Respond to requests for multiple patients' data as a group according to the standard adopted in § 170.215(a)(1), and implementation specifications adopted in § 170.215(a)(2) and (4), for each of the data included in the standard adopted in § 170.213. All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(i)(B)"])
+
 ### Supported Search Operations (Single Patient) - § 170.315(g)(10)(ii)(A)
 **Regulation text**: (ii) Supported search operations. (A) Respond to search requests for a single patient's data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(2), specifically the mandatory capabilities described in “US Core Server CapabilityStatement.”
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-$ref(g-10:CCG["Paragraph (10)(i)(B)"])
+$ref(g-10:CCG["Paragraph (10)(ii)(A)"])
 
 ### Supported Search Operations (Multiple Patients) - § 170.315(g)(10)(ii)(B)
 **Regulation text**: (B) Respond to search requests for multiple patients' data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(4)
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-$ref(g-10:CCG["Paragraph (10)(ii)(A)"])
+$ref(g-10:CCG["Paragraph (10)(ii)(B)"])
 
 *Additional Clarifications*:
 
 - The scope of data available in the data responses defined in § 170.315(g)(10)(i) must be supported for searches for multiple patients via the supported search operations finalized in § 170.315(g)(10)(ii).
 - The HL7 FHIR Bulk Data Access (Flat FHIR) (v1.0.0: STU 1) implementation specification adopted in § 170.215(a)(4) includes mandatory support for the “group-export” “OperationDefinition.”
+
+### Application Registration - § 170.315(g)(10)(iii)
+**Regulation text**: (iii) Application registration. Enable an application to register with the Health IT Module's “authorization server.”
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(iii)"])
+
+### Secure Connection (Patient / User Scopes) - § 170.315(g)(10)(iv)(A)
+**Regulation text**: (iv) Secure connection. (A) Establish a secure and trusted connection with an application that requests data for patient and user scopes in accordance with the implementation specifications adopted in § 170.215(a)(2) and (3).
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(iv)(A)"])
+
+### Secure Connection (System Scopes) - § 170.315(g)(10)(iv)(B)
+**Regulation text**: (B) Establish a secure and trusted connection with an application that requests data for system scopes in accordance with the implementation specification adopted in § 170.215(a)(4).
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(iv)(B)"])
+
+### First-time Authentication / Authorization for Single Patient Services - § 170.315(g)(10)(V)(A)(1)
+**Regulation text**: (v) Authentication and authorization—(A) Authentication and authorization for patient and user scopes—(1) First time connections—(i) Authentication and authorization must occur during the process of granting access to patient data in accordance with the implementation specification adopted in § 170.215(a)(3) and standard adopted in § 170.215(b). (ii) A Health IT Module's authorization server must issue a refresh token valid for a period of no less than three months to applications capable of storing a client secret. (iii) A Health IT Module's authorization server must issue a refresh token for a period of no less than three months to native applications capable of securing a refresh token.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(v)(A)(1)"])
+
+### Subsequent Authentication / Authorization for Single Patient Services - § 170.315(g)(10)(V)(A)(2)
+**Regulation text**: (2) Subsequent connections. (i) Access must be granted to patient data in accordance with the implementation specification adopted in § 170.215(a)(3) without requiring reauthorization and re-authentication when a valid refresh token is supplied by the application. (ii) A Health IT Module's authorization server must issue a refresh token valid for a new period of no less than three months to applications capable of storing a client secret.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(v)(A)(2)"])
+
+### Authentication / Authorization for Multiple Patient Services - § 170.315(g)(10)(V)(B)
+**Regulation text**: (B) Authentication and authorization for system scopes. Authentication and authorization must occur during the process of granting an application access to patient data in accordance with the “SMART Backend Services: Authorization Guide” section of the implementation specification adopted in § 170.215(a)(4) and the application must be issued a valid access token.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(v)(B)"])
+
+### Patient Authorization Revocation - § 170.315(g)(10)(VI)
+**Regulation text**: (vi) Patient authorization revocation. A Health IT Module's authorization server must be able to revoke an authorized application's access at a patient's direction.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(vi)"])
+
+### Token Introspection - § 170.315(g)(10)(VII)
+**Regulation text**: (vii) Token introspection. A Health IT Module's authorization server must be able to receive and validate tokens it has issued.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(vii)"])
+
+### Technical API Documentation Content - § 170.315(g)(10)(VIII)(A)
+**Regulation text**: (viii) Documentation. (A) The API(s) must include complete accompanying documentation that contains, at a minimum: (1) API syntax, function names, required and optional parameters supported and their data types, return variables and their types/structures, exceptions and exception handling methods and their returns. (2) The software components and configurations that would be necessary for an application to implement in order to be able to successfully interact with the API and process its response(s). (3) All applicable technical requirements and attributes necessary for an application to be registered with a Health IT Module's authorization server.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(viii)(A)"])
+
+### Technical API Documentation Availability - § 170.315(g)(10)(VIII)(B)
+**Regulation text**: (B) The documentation used to meet paragraph (g)(10)(viii)(A) of this section must be available via a publicly accessible hyperlink without any preconditions or additional steps.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+$ref(g-10:CCG["Paragraph (10)(viii)(B)"])
 
 ### *Other standards not directly referenced in § 170.315(g)(10)*
 

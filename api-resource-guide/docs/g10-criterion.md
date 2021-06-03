@@ -51,8 +51,8 @@ This section considers the standardized API for patient and population services 
 	<li>Health IT Modules must support provenance according to the <a href="https://build.fhir.org/ig/HL7/US-Core-R4/basic-provenance.html">“Basic Provenance Guidance” section of the US Core IG. </a></li>
 </ul>
 
-### Supported Search Operations (Single Patient) - § 170.315(g)(10)(ii)(A)
-**Regulation text**: (ii) Supported search operations. (A) Respond to search requests for a single patient's data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(2), specifically the mandatory capabilities described in “US Core Server CapabilityStatement.”
+### Data Response (Multiple Patients) - § 170.315(g)(10)(i)(B)
+**Regulation text**: (B) Respond to requests for multiple patients' data as a group according to the standard adopted in § 170.215(a)(1), and implementation specifications adopted in § 170.215(a)(2) and (4), for each of the data included in the standard adopted in § 170.213. All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
@@ -62,18 +62,123 @@ This section considers the standardized API for patient and population services 
 	<li>Health IT Modules must support provenance according to the <a href="https://build.fhir.org/ig/HL7/US-Core-R4/basic-provenance.html">“Basic Provenance Guidance” section of the US Core IG. </a></li>
 </ul>
 
-### Supported Search Operations (Multiple Patients) - § 170.315(g)(10)(ii)(B)
-**Regulation text**: (B) Respond to search requests for multiple patients' data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(4)
+### Supported Search Operations (Single Patient) - § 170.315(g)(10)(ii)(A)
+**Regulation text**: (ii) Supported search operations. (A) Respond to search requests for a single patient's data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(2), specifically the mandatory capabilities described in “US Core Server CapabilityStatement.”
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
 <ul style="list-style-type: disc;"><li>All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported and are in scope for testing.</li>
 </ul>
 
+### Supported Search Operations (Multiple Patients) - § 170.315(g)(10)(ii)(B)
+**Regulation text**: (B) Respond to search requests for multiple patients' data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(4)
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>No additional clarifications.</li>
+</ul>
+
 *Additional Clarifications*:
 
 - The scope of data available in the data responses defined in § 170.315(g)(10)(i) must be supported for searches for multiple patients via the supported search operations finalized in § 170.315(g)(10)(ii).
 - The HL7 FHIR Bulk Data Access (Flat FHIR) (v1.0.0: STU 1) implementation specification adopted in § 170.215(a)(4) includes mandatory support for the “group-export” “OperationDefinition.”
+
+### Application Registration - § 170.315(g)(10)(iii)
+**Regulation text**: (iii) Application registration. Enable an application to register with the Health IT Module's “authorization server.”
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>Health IT presented for testing and certification must support app registration regardless of the scope of patient search utilized by the application (e.g. single or multiple).</li>
+	<li>This certification criterion requires a health IT developer, as finalized in the Condition of Certification requirements, to demonstrate its registration process, but does not require conformance to a standard.</li>
+	<li>The third-party application registration process that a health IT developer must meet under this criterion is not a form of review or “vetting” for purposes of this criterion.</li>
+	<li>For demonstration of the SMART IG "Standalone Launch" steps, health IT developers are permitted to scope US Core IG resources that do not exist in either the standard adopted at § 170.213 (USCDI version 1) or the "Compartment Patient" section of the standard adopted at § 170.215(a)(1) (HL7 FHIR Release 4.0.1) as either patient/[Resource] or user/[Resource]. These resources include “Encounter,” “Device,” “Location,” “Medication,” “Organization,” “Practitioner,” and “PractitionerRole.” Health IT developers must document their supported scopes according to the technical documentation requirements at § 170.315(g)(10)(viii)(A) and § 170.404(a)(2).</li>
+</ul>
+
+### Secure Connection (Patient / User Scopes) - § 170.315(g)(10)(iv)(A)
+**Regulation text**: (iv) Secure connection. (A) Establish a secure and trusted connection with an application that requests data for patient and user scopes in accordance with the implementation specifications adopted in § 170.215(a)(2) and (3).
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>Connections below TLS version 1.2 must be denied.</li>
+</ul>
+
+### Secure Connection (System Scopes) - § 170.315(g)(10)(iv)(B)
+**Regulation text**: (B) Establish a secure and trusted connection with an application that requests data for system scopes in accordance with the implementation specification adopted in § 170.215(a)(4).
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>Connections below TLS version 1.2 must be denied.</li>
+</ul>
+
+### First-time Authentication / Authorization for Single Patient Services - § 170.315(g)(10)(V)(A)(1)
+**Regulation text**: (v) Authentication and authorization—(A) Authentication and authorization for patient and user scopes—(1) First time connections—(i) Authentication and authorization must occur during the process of granting access to patient data in accordance with the implementation specification adopted in § 170.215(a)(3) and standard adopted in § 170.215(b). (ii) A Health IT Module's authorization server must issue a refresh token valid for a period of no less than three months to applications capable of storing a client secret. (iii) A Health IT Module's authorization server must issue a refresh token for a period of no less than three months to native applications capable of securing a refresh token.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>Health IT Modules will be explicitly tested for US Core IG operations using authentication and authorization tokens acquired via the process described in the implementation specification adopted in § 170.215(a)(3).</li>
+	<li>Only the relevant parts of the OpenID Connect Core 1.0 including errata set 1 adopted in § 170.215(b) that are also included in the implementation specification adopted in § 170.215(a)(3) will be in-scope for testing and certification.</li>
+	<li>The “SMART on FHIR Core Capabilities” in § 170.215(a)(3) are explicitly required for testing and certification because these capabilities are otherwise indicated as optional in the implementation specification. </li>
+	<li>As part of the “permission-patient” “SMART on FHIR Core Capability” in § 170.215(a)(3), Health IT Modules presented for testing and certification must include the ability for patients to authorize an application to receive their electronic health information (EHI) based on FHIR resource-level scopes. Specifically, this means patients would need to have the ability to authorize access to their EHI at the individual FHIR resource level, from one specific FHIR resource (e.g., “Immunization”) up to all FHIR resources necessary to implement the standard adopted in § 170.213 and implementation specification adopted in § 170.215(a)(2).</li>
+	<li>Although Health IT Modules presented for testing and certification must include the ability for patients to authorize an application to receive their EHI based on FHIR resource-level scopes, Health IT Modules are not prohibited from presenting authorization scopes in a more user-friendly format (e.g. grouping resources under categories, renaming the scopes for easier comprehension by the end-user, using more granular scopes), as long as the ability for patients to authorize applications based on resource-level scopes is available, if requested by the patient.</li>
+	<li>Health IT Modules will only be tested for the "Patient Access for Standalone Apps" and "Clinician Access for EHR Launch" scenarios described in the standard adopted at § 170.215(a)(3).</li>
+	<li>Since "Encounter" is not currently a USCDI Data Class or Data Element, we will not test Health IT Modules for support for "context-ehr-encounter" or "context-standalone-encounter" SMART on FHIR Core Capabilities described in the standard adopted at § 170.215(a)(3). </li>
+	<li>Implementers of § 170.315(g)(10)-certified Health IT Modules should be mindful of the information blocking provisions.</li>
+	<li>As part of the requirements at § 170.315(g)(10)(v)(A)(1)(iii), health IT developers must publish the method(s) by which their Health IT Modules support the secure issuance of an initial refresh token to native applications according to the technical documentation requirements at § 170.315(g)(10)(viii) and transparency conditions at § 170.404(a)(2). </li>
+	<li>Application developer affirmations to health IT developers regarding the ability of their applications to secure a refresh token, a client secret, or both, must be treated in a good faith manner consistent with the provisions established in the openness and pro-competitive conditions at § 170.404(a)(4). </li>
+	<li>Health IT developers can determine the method(s) they use to support interactions with native applications and clarify that health IT developers are not required to support all methods third-party application developers seek to use. </li>
+	<li>ONC recognizes there may be some ambiguity in the HL7® <a href="http://hl7.org/fhir/smart-app-launch/">SMART Application Launch Framework Implementation Guide Release 1.0.0</a> standard (incorporated by reference at § 170.215(a)(3)) in its guidance for supporting native applications, in particular, in providing references to best practices, strategies, and examples such as “OAuth 2.0 for Native Apps: 8.5. Client Authentication”, “OAuth 2.0 Dynamic Client Registration Protocol”, and “universal redirect_uris” without a standardized solution. ONC provides flexibility for how the health IT developer implements the HL7® <a href="http://hl7.org/fhir/smart-app-launch/">SMART Application Launch Framework</a> implementation specification, as long as the  Certified Health IT Module supports for first time connections the issuance of three-month refresh tokens to native applications capable of securing a refresh token.</li>
+	<li>The paragraph at § 170.215(a)(3) requires health IT developers to support the SMART Application Launch Framework Implementation Guide (SMART IG) “SMART [on FHIR] Core Capabilities,” including “permission-offline,” which grants support for refresh tokens. The ONC Cures Act Final Rule states, <em>“…Importantly, the implementation specification adopted in § 170.215(a)(3) requires that patients have the ability to explicitly enable the “offline_access” scope during authorization. If the “offline_access” scope is not enabled by patients, patients will be required to re-authenticate and re-authorize an application's access to their EHI after the application's access token expires…” (</em><a href="https://www.federalregister.gov/d/2020-07419/p-1254">85 FR 25747</a><em>).</em> However, the ability of a patient to explicitly enable the “offline_access” scope during authorization is not described in the implementation specification. ONC clarifies that health IT developers must support the ability for patients to be provided information about an application’s request for persistent access <u>prior</u> to the patient sharing their health information, in order to enable patients to make an informed decision during authorization. Examples include, but are not limited to a health IT developer allowing patients to granularly grant “offline-access” scopes during authorization or clearly providing this information as a notice during authorization. The critical requirement is that patients are empowered to deny authorization for offline access.</li>
+</ul>
+
+### Subsequent Authentication / Authorization for Single Patient Services - § 170.315(g)(10)(V)(A)(2)
+**Regulation text**: (2) Subsequent connections. (i) Access must be granted to patient data in accordance with the implementation specification adopted in § 170.215(a)(3) without requiring reauthorization and re-authentication when a valid refresh token is supplied by the application. (ii) A Health IT Module's authorization server must issue a refresh token valid for a new period of no less than three months to applications capable of storing a client secret.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>No additional clarifications.</li>
+</ul>
+
+### Authentication / Authorization for Multiple Patient Services - § 170.315(g)(10)(V)(B)
+**Regulation text**: (B) Authentication and authorization for system scopes. Authentication and authorization must occur during the process of granting an application access to patient data in accordance with the “SMART Backend Services: Authorization Guide” section of the implementation specification adopted in § 170.215(a)(4) and the application must be issued a valid access token.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>No additional clarifications.</li>
+</ul>
+
+### Patient Authorization Revocation - § 170.315(g)(10)(VI)
+**Regulation text**: (vi) Patient authorization revocation. A Health IT Module's authorization server must be able to revoke an authorized application's access at a patient's direction.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>This is a functional requirement to allow health IT developers the ability to implement it in a way that best suits their existing infrastructure and allows for innovative models for authorization revocation to develop.</li>
+	<li>Patients are expected to have the ability to revoke an authorized application’s access to their EHI at any time.</li>
+</ul>
+
+### Token Introspection - § 170.315(g)(10)(VII)
+**Regulation text**: (vii) Token introspection. A Health IT Module's authorization server must be able to receive and validate tokens it has issued.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>Although ONC does not specify a standard for token introspection, ONC encourages industry to coalesce around using a common standard, like OAuth 2.0 Token Introspection (RFC 7662).</li>
+</ul>
+
+### Technical API Documentation Content - § 170.315(g)(10)(VIII)(A)
+**Regulation text**: (viii) Documentation. (A) The API(s) must include complete accompanying documentation that contains, at a minimum: (1) API syntax, function names, required and optional parameters supported and their data types, return variables and their types/structures, exceptions and exception handling methods and their returns. (2) The software components and configurations that would be necessary for an application to implement in order to be able to successfully interact with the API and process its response(s). (3) All applicable technical requirements and attributes necessary for an application to be registered with a Health IT Module's authorization server.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>Health IT developers are not required to re-publish documentation from the adopted standards and implementation specifications. However, health IT developers must publish documentation that goes beyond the adopted standards and implementation specifications.</li>
+	<li>Health IT developers are expected to disclose any additional data their § 170.315(g)(10)-certified Health IT Module supports in the context of the adopted standards and implementation specifications.</li>
+</ul>
+
+### Technical API Documentation Availability - § 170.315(g)(10)(VIII)(B)
+**Regulation text**: (B) The documentation used to meet paragraph (g)(10)(viii)(A) of this section must be available via a publicly accessible hyperlink without any preconditions or additional steps.
+
+*Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
+
+<ul><li>No additional clarifications.</li>
+</ul>
 
 ### *Other standards not directly referenced in § 170.315(g)(10)*
 
