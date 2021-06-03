@@ -22,9 +22,14 @@ def read_to_line_end(input_str, pos):
 
     while c != "\n":
         pointer += 1
+
+        # End of file check
+        if pointer >= len(input_str):
+            break
+
         c = input_str[pointer]
 
-    return input_str[pos:pointer], pointer
+    return input_str[pos:pointer]
 
 def strip_html(data):
     # https://stackoverflow.com/a/3398894
@@ -65,7 +70,9 @@ def gather_data_from_web():
     #     json.dump(web_data, f)
     return web_data
 
-def process_template(onc_template_str):
+def process_template(onc_template_str, file_name):
+    print("Processing {}...".format(file_name))  
+
     #web_data = gather_data_from_web()
     # Temp, read from file
     web_data = None
@@ -80,16 +87,19 @@ def process_template(onc_template_str):
 
     # Will continue looping for each load function present in template
     while index > 0:
-        function_line, pos = read_to_line_end(onc_template_str, index)
+        function_line = read_to_line_end(onc_template_str, index)
 
-        referenced_paragraph = re.findall('"([^"]*)"', function_line)[0]
+        referenced_paragraph_key = re.findall('"([^"]*)"', function_line)[0] # Extracting paragraph key
+        referenced_paragraph_data = web_data[referenced_paragraph_key]
 
-        onc_template_str = onc_template_str.replace(function_line, web_data[referenced_paragraph])
-        index = onc_template_str.find(json_search_function) # Search for another load function
+        clarifications_list = re.findall('<ul [^}]*>[^}]*<\/ul>', referenced_paragraph_data)[0] # Extracting unordered list
+
+        onc_template_str = onc_template_str.replace(function_line, clarifications_list)
+        index = onc_template_str.find(json_search_function) # Search for another ref function
     
     # Output final result to file
-    # output_file_name = file_name.replace(".json", ".md") # Use same file name just with markdown extension
-    output_file_name = "simple.md"
+    output_file_name = file_name.replace(".onc", ".md") # Use same file name just with markdown extension
+    # output_file_name = "simple.md"
     output_file = open(output_file_name, 'w')
     onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
     output_file.write(onc_template_str)
@@ -108,9 +118,8 @@ if choice == "A":
             ext = os.path.splitext(file)[-1].lower()
             if ext == ".onc":
                 onc_template = open(file, 'r')
-                onc_template_str = onc_template.read()
-                print("Processing {}...".format(file))    
-                process_template(onc_template_str)
+                onc_template_str = onc_template.read()  
+                process_template(onc_template_str, file)
 else:
     file_read = False
 
@@ -124,8 +133,7 @@ else:
         except FileNotFoundError:
             choice = input("File not found, enter a different file name: ")
             continue
-    
-    print("Processing {}...".format(choice))    
-    process_template(onc_template_str)
+     
+    process_template(onc_template_str, choice)
 
 print("All processing complete!")

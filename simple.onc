@@ -1,3 +1,7 @@
 # Clarifications!
 
 $ref(g-10:CCG["Applies to Entire Criterion"])
+
+## This is some additional makrdown just to test that this is working!
+
+$ref(g-10:CCG["Paragraph (10)(i)(A)"])
