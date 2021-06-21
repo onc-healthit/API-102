@@ -96,7 +96,7 @@ def process_template(onc_template_str, file_name):
         index = onc_template_str.find(json_search_function) # Search for another ref function
     
     # Output final result to file
-    output_file = open("{}\\api-resource-guide\\docs\\{}".format(os.getcwd(), file_name), 'w', encoding='utf-8')
+    output_file = open("{}\\docs\\{}".format(os.getcwd(), file_name), 'w', encoding='utf-8')
     onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
     output_file.write(onc_template_str)
     output_file.close()
@@ -107,7 +107,7 @@ def process_template(onc_template_str, file_name):
 choice = input("Press \"A\" to convert all .onc files or enter a specific file name: ")
 
 if choice == "A":
-    directory = "{}\\api-resource-guide\\pre_processed_docs".format(os.getcwd())
+    directory = "{}\\pre_processed_docs".format(os.getcwd())
 
     for subdir, dirs, files in os.walk(directory):
         for file in files:
