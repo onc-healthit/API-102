@@ -3,6 +3,7 @@
 *[API]: Application Programming Interface
 *[APIs]: Application Programming Interfaces
 *[HL7]: Health Level 7
+*[IG]: Implementation guide
 
 *[Health IT Certification Program]: A voluntary program administered by ONC to allow health IT developers to test and ceritfy health IT to certification criteria
 *[API criteria]: Certification criteria at § 170.315(g)(7) - (10)
@@ -19,9 +20,9 @@
 <!-- ONC Certification Criteria -->
 *[g)(10]: Standardized HL7 FHIR-based API certification criterion
 *[170.404]: Conditions and Maintenance of certification requirements that apply to health IT developers with Health IT Modules certified to § 170.315(g)(7) - (10)
-*[g)(7]: ""
-*[g)(8]: ""
-*[g)(9]: ""
+*[g)(7]: "Non-standardized API certification criterion (patient selection)"
+*[g)(8]: "Non-standardized API certification criterion (data category request)"
+*[g)(9]: "Non-standardized API certification criterion (all data request)"
 
 <!-- ONC Rules -->
 *[Cures Act Final Rule]: 21st Century Cures Act: Interoperability, Information Blocking, and the ONC Health IT Certification Program

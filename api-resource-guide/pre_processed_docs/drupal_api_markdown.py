@@ -4,6 +4,8 @@ import re
 import requests
 import json
 
+call_api = True
+
 def read_to_line_end(input_str, pos):
     """Builds a string from a position to the end of the line
     and returns the result.
@@ -36,26 +38,41 @@ def strip_html(data):
     p = re.compile(r'<.*?>')
     return p.sub('', data).strip()
 
+def html_list_to_markdown(input):
+    input = re.sub(r'<ul ?[^>]*>', '', input) # Removing opening '<ul>' tag
+
+    input = input.replace("</ul>", "") # Removing closing '</ul>' tag
+    
+    input = input.replace("<li>", "- ") # Replcaing <li> with '-' (markdwon list syntax)
+    
+    input = input.replace("</li>", "") # Removing </li> tags
+    
+    input = input.replace("\t", "") # Removing tabs
+
+    return input
+
 def gather_data_from_web():
     web_data = {}
 
     base_url = "https://healthit.gov/test-method"
     criterion = "standardized-api-patient-and-population-services"
 
-    #entity_ids_json = requests.get("{}/{}?_format=json".format(base_url, criterion)).json()["field_clarification_table"]
-    # Reading cached file (temporary)
     entity_ids_json = None
-    with open('cached_entities.json') as f:
-        entity_ids_json = json.load(f)["field_clarification_table"]
+    if call_api:
+        entity_ids_json = requests.get("{}/{}?_format=json".format(base_url, criterion)).json()["field_clarification_table"]
+    else:
+        with open('cached_entities.json') as f:
+            entity_ids_json = json.load(f)["field_clarification_table"]
 
     data_url = "https://healthit.gov/entity/paragraph"
 
     for entity_id in entity_ids_json:
-        #data_json = requests.get("{}/{}?_format=json".format(data_url, entity_id["target_id"])).json()
-        # Reading cached file (temporary)
         data_json = None
-        with open('cached_response.json') as f:
-            data_json = json.load(f)
+        if call_api:
+            data_json = requests.get("{}/{}?_format=json".format(data_url, entity_id["target_id"])).json()
+        else:
+            with open('cached_response.json') as f:
+                data_json = json.load(f)
 
         element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
         data = data_json["field_technical_explanations_and"][0]["processed"]
@@ -69,11 +86,12 @@ def gather_data_from_web():
 def process_template(onc_template_str, file_name):
     print("Processing {}...".format(file_name))  
 
-    #web_data = gather_data_from_web()
-    # Temp, read from file
     web_data = None
-    with open('web_data.json') as f:
-        web_data = json.load(f)
+    if call_api:
+        web_data = gather_data_from_web()
+    else:
+        with open('web_data.json') as f:
+            web_data = json.load(f)
 
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
 
@@ -89,8 +107,9 @@ def process_template(onc_template_str, file_name):
         referenced_paragraph_data = web_data[referenced_paragraph_key]
 
         clarifications_list = re.findall('<ul ?[^}]*>[^}]*<\/ul>', referenced_paragraph_data) # Extracting unordered list
-
         clarifications_list = clarifications_list[0]
+
+        clarifications_list = html_list_to_markdown(clarifications_list)
 
         onc_template_str = onc_template_str.replace(function_line, clarifications_list)
         index = onc_template_str.find(json_search_function) # Search for another ref function

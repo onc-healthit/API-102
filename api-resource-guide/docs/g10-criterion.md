@@ -19,16 +19,16 @@ This section considers the standardized API for patient and population services 
 ### Applies to Entire Criterion
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul style="list-style-type: disc;"><li>On December 31, 2022, the API certification criterion in § 170.315(g)(10) replaces the “application access—data category request” certification criterion (§ 170.315(g)(8)).</li>
-	<li>Health IT Modules are not required to support patient-facing API-enabled “read” services for multiple patients for the purposes of this certification criterion.</li>
-	<li>The clinical note text included in any of the notes described in the “Clinical Notes Guidance” section of the US Core IG adopted in § 170.215(a)(2) must be represented in a “plain text” form, and it would be unacceptable for the note text to be converted to another file or format (e.g., .docx, PDF) when it is provided as part of an API response. The intent of this policy is to prohibit Health IT Modules from converting clinical notes from a “machine readable” format to a non-“machine readable” format (e.g., PDF). Clinical note text that originates from outside Health IT Modules should be exchanged using its original format. Additionally, “plain text” does not necessarily mean the FHIR “contentType” “text/plain.”</li>
-	<li>The US Core IG Profile “StructureDefinition-us-core-patient” element “name.suffix” is required for testing and certification in the ONC Certification Program to meet the USCDI requirement to support the “Patient Demographics” Data Class: “Suffix” Data Element.</li>
-	<li>Either the US Core IG Profile “StructureDefinition-us-core-patient” element “name.period” or “name.use” is required for testing and certification in the ONC Certification Program to meet the USCDI requirement to support the “Patient Demographics” Data Class: “Previous Name” Data Element.</li>
-	<li>A Health IT Module must support at least one Choice or Reference for US Core IG “must support” elements with multiple Choices or References, respectively. </li>
-	<li>A Health IT Module must be conformant to the US Core IG for all Choices and References included in its standardized API, and cannot misrepresent Choices via the standardized API (e.g. a Health IT Module cannot transform “integer” values to “string” values). </li>
-	<li>A health IT developer must document which US Core IG Choices and References are supported by their Health IT Module via public technical documentation to meet the requirements at § 170.315(g)(10)(viii) and the transparency conditions at § 170.404(a)(2). </li>
-	<li>Information originating from the (g)(10)-certified Health IT Module must conform to the requirements included in the criterion, but legacy information and information from outside systems is not required to be mapped to the United States Core Data for Interoperability (USCDI) “Applicable Standards” and the US Core IG terminologies and value sets. However, health IT developers are encouraged to exceed the minimum requirements described in § 170.315(g)(10) to support the mapping of legacy information to the terminologies and value sets included in the USCDI and US Core IG where possible.</li>
-</ul>
+- On December 31, 2022, the API certification criterion in § 170.315(g)(10) replaces the “application access—data category request” certification criterion (§ 170.315(g)(8)).
+- Health IT Modules are not required to support patient-facing API-enabled “read” services for multiple patients for the purposes of this certification criterion.
+- The clinical note text included in any of the notes described in the “Clinical Notes Guidance” section of the US Core IG adopted in § 170.215(a)(2) must be represented in a “plain text” form, and it would be unacceptable for the note text to be converted to another file or format (e.g., .docx, PDF) when it is provided as part of an API response. The intent of this policy is to prohibit Health IT Modules from converting clinical notes from a “machine readable” format to a non-“machine readable” format (e.g., PDF). Clinical note text that originates from outside Health IT Modules should be exchanged using its original format. Additionally, “plain text” does not necessarily mean the FHIR “contentType” “text/plain.”
+- The US Core IG Profile “StructureDefinition-us-core-patient” element “name.suffix” is required for testing and certification in the ONC Certification Program to meet the USCDI requirement to support the “Patient Demographics” Data Class: “Suffix” Data Element.
+- Either the US Core IG Profile “StructureDefinition-us-core-patient” element “name.period” or “name.use” is required for testing and certification in the ONC Certification Program to meet the USCDI requirement to support the “Patient Demographics” Data Class: “Previous Name” Data Element.
+- A Health IT Module must support at least one Choice or Reference for US Core IG “must support” elements with multiple Choices or References, respectively. 
+- A Health IT Module must be conformant to the US Core IG for all Choices and References included in its standardized API, and cannot misrepresent Choices via the standardized API (e.g. a Health IT Module cannot transform “integer” values to “string” values). 
+- A health IT developer must document which US Core IG Choices and References are supported by their Health IT Module via public technical documentation to meet the requirements at § 170.315(g)(10)(viii) and the transparency conditions at § 170.404(a)(2). 
+- Information originating from the (g)(10)-certified Health IT Module must conform to the requirements included in the criterion, but legacy information and information from outside systems is not required to be mapped to the United States Core Data for Interoperability (USCDI) “Applicable Standards” and the US Core IG terminologies and value sets. However, health IT developers are encouraged to exceed the minimum requirements described in § 170.315(g)(10) to support the mapping of legacy information to the terminologies and value sets included in the USCDI and US Core IG where possible.
+
 
 *Additional Clarifications to the (g)(10) CCG:*
 
@@ -46,37 +46,37 @@ This section considers the standardized API for patient and population services 
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul style="list-style-type: disc;"><li>All data elements and operations indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported and are in-scope for testing.</li>
-	<li>For “Encounter,” “Organization,” and “Practitioner,” US Core IG profiles, only the “read” type interaction must be supported and will be included in testing and certification. For the “Location” FHIR resource, Health IT Modules must either demonstrate support for the “read” type interaction or demonstrate support for providing the “Location” and FHIR resource references as a contained resource. The “search” type interactions for these profiles and resource are not in scope for testing and certification. Health IT Modules must support these US Core IG profiles / FHIR resource because they are included as “must support” data elements in US Core IG profiles required by the USCDI.</li>
-	<li>Health IT Modules must support provenance according to the <a href="https://build.fhir.org/ig/HL7/US-Core-R4/basic-provenance.html">“Basic Provenance Guidance” section of the US Core IG. </a></li>
-</ul>
+- All data elements and operations indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported and are in-scope for testing.
+- For “Encounter,” “Organization,” and “Practitioner,” US Core IG profiles, only the “read” type interaction must be supported and will be included in testing and certification. For the “Location” FHIR resource, Health IT Modules must either demonstrate support for the “read” type interaction or demonstrate support for providing the “Location” and FHIR resource references as a contained resource. The “search” type interactions for these profiles and resource are not in scope for testing and certification. Health IT Modules must support these US Core IG profiles / FHIR resource because they are included as “must support” data elements in US Core IG profiles required by the USCDI.
+- Health IT Modules must support provenance according to the <a href="https://www.hl7.org/fhir/us/core/basic-provenance.html#basic-provenance-guidance">“Basic Provenance Guidance” section of the US Core IG. </a>
+
 
 ### Data Response (Multiple Patients) - § 170.315(g)(10)(i)(B)
 **Regulation text**: (B) Respond to requests for multiple patients' data as a group according to the standard adopted in § 170.215(a)(1), and implementation specifications adopted in § 170.215(a)(2) and (4), for each of the data included in the standard adopted in § 170.213. All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>Health IT Modules may support scopes using either “system/*.read” or a list of “system/[resource].read,” where [resource] is the FHIR resource name, to enable the export of multiple patients’ data as a group.</li>
-	<li>During testing and certification for multiple patient services, Health IT Modules must demonstrate support for “Encounter,” “Organization,” and “Practitioner” US Core IG FHIR Profiles. </li>
-	<li>Health IT Modules must demonstrate support for “Location” FHIR resources by providing this resource as part of the multiple patient services response, or by including it as a contained resource as part of the multiple patient services response.</li>
-	<li>Health IT Modules must support provenance according to the <a href="https://build.fhir.org/ig/HL7/US-Core-R4/basic-provenance.html">“Basic Provenance Guidance” section of the US Core IG. </a></li>
-</ul>
+- Health IT Modules may support scopes using either “system/*.read” or a list of “system/[resource].read,” where [resource] is the FHIR resource name, to enable the export of multiple patients’ data as a group.
+- During testing and certification for multiple patient services, Health IT Modules must demonstrate support for “Encounter,” “Organization,” and “Practitioner” US Core IG FHIR Profiles. 
+- Health IT Modules must demonstrate support for “Location” FHIR resources by providing this resource as part of the multiple patient services response, or by including it as a contained resource as part of the multiple patient services response.
+- Health IT Modules must support provenance according to the <a href="https://www.hl7.org/fhir/us/core/basic-provenance.html#basic-provenance-guidance">“Basic Provenance Guidance” section of the US Core IG. </a>
+
 
 ### Supported Search Operations (Single Patient) - § 170.315(g)(10)(ii)(A)
 **Regulation text**: (ii) Supported search operations. (A) Respond to search requests for a single patient's data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(2), specifically the mandatory capabilities described in “US Core Server CapabilityStatement.”
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul style="list-style-type: disc;"><li>All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported and are in scope for testing.</li>
-</ul>
+- All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported and are in scope for testing.
+
 
 ### Supported Search Operations (Multiple Patients) - § 170.315(g)(10)(ii)(B)
 **Regulation text**: (B) Respond to search requests for multiple patients' data consistent with the search criteria included in the implementation specification adopted in § 170.215(a)(4)
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>No additional clarifications.</li>
-</ul>
+- No additional clarifications.
+
 
 *Additional Clarifications*:
 
@@ -88,97 +88,97 @@ This section considers the standardized API for patient and population services 
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>Health IT presented for testing and certification must support app registration regardless of the scope of patient search utilized by the application (e.g. single or multiple).</li>
-	<li>This certification criterion requires a health IT developer, as finalized in the Condition of Certification requirements, to demonstrate its registration process, but does not require conformance to a standard.</li>
-	<li>The third-party application registration process that a health IT developer must meet under this criterion is not a form of review or “vetting” for purposes of this criterion.</li>
-	<li>For demonstration of the SMART IG "Standalone Launch" steps, health IT developers are permitted to scope US Core IG resources that do not exist in either the standard adopted at § 170.213 (USCDI version 1) or the "Compartment Patient" section of the standard adopted at § 170.215(a)(1) (HL7 FHIR Release 4.0.1) as either patient/[Resource] or user/[Resource]. These resources include “Encounter,” “Device,” “Location,” “Medication,” “Organization,” “Practitioner,” and “PractitionerRole.” Health IT developers must document their supported scopes according to the technical documentation requirements at § 170.315(g)(10)(viii)(A) and § 170.404(a)(2).</li>
-</ul>
+- Health IT presented for testing and certification must support app registration regardless of the scope of patient search utilized by the application (e.g. single or multiple).
+- This certification criterion requires a health IT developer, as finalized in the Condition of Certification requirements, to demonstrate its registration process, but does not require conformance to a standard.
+- The third-party application registration process that a health IT developer must meet under this criterion is not a form of review or “vetting” for purposes of this criterion.
+- For demonstration of the SMART IG "Standalone Launch" steps, health IT developers are permitted to scope US Core IG resources that do not exist in either the standard adopted at § 170.213 (USCDI version 1) or the "Compartment Patient" section of the standard adopted at § 170.215(a)(1) (HL7 FHIR Release 4.0.1) as either patient/[Resource] or user/[Resource]. These resources include “Encounter,” “Device,” “Location,” “Medication,” “Organization,” “Practitioner,” and “PractitionerRole.” Health IT developers must document their supported scopes according to the technical documentation requirements at § 170.315(g)(10)(viii)(A) and § 170.404(a)(2).
+
 
 ### Secure Connection (Patient / User Scopes) - § 170.315(g)(10)(iv)(A)
 **Regulation text**: (iv) Secure connection. (A) Establish a secure and trusted connection with an application that requests data for patient and user scopes in accordance with the implementation specifications adopted in § 170.215(a)(2) and (3).
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>Connections below TLS version 1.2 must be denied.</li>
-</ul>
+- Connections below TLS version 1.2 must be denied.
+
 
 ### Secure Connection (System Scopes) - § 170.315(g)(10)(iv)(B)
 **Regulation text**: (B) Establish a secure and trusted connection with an application that requests data for system scopes in accordance with the implementation specification adopted in § 170.215(a)(4).
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>Connections below TLS version 1.2 must be denied.</li>
-</ul>
+- Connections below TLS version 1.2 must be denied.
+
 
 ### First-time Authentication / Authorization for Single Patient Services - § 170.315(g)(10)(V)(A)(1)
 **Regulation text**: (v) Authentication and authorization—(A) Authentication and authorization for patient and user scopes—(1) First time connections—(i) Authentication and authorization must occur during the process of granting access to patient data in accordance with the implementation specification adopted in § 170.215(a)(3) and standard adopted in § 170.215(b). (ii) A Health IT Module's authorization server must issue a refresh token valid for a period of no less than three months to applications capable of storing a client secret. (iii) A Health IT Module's authorization server must issue a refresh token for a period of no less than three months to native applications capable of securing a refresh token.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>Health IT Modules will be explicitly tested for US Core IG operations using authentication and authorization tokens acquired via the process described in the implementation specification adopted in § 170.215(a)(3).</li>
-	<li>Only the relevant parts of the OpenID Connect Core 1.0 including errata set 1 adopted in § 170.215(b) that are also included in the implementation specification adopted in § 170.215(a)(3) will be in-scope for testing and certification.</li>
-	<li>The “SMART on FHIR Core Capabilities” in § 170.215(a)(3) are explicitly required for testing and certification because these capabilities are otherwise indicated as optional in the implementation specification. </li>
-	<li>As part of the “permission-patient” “SMART on FHIR Core Capability” in § 170.215(a)(3), Health IT Modules presented for testing and certification must include the ability for patients to authorize an application to receive their electronic health information (EHI) based on FHIR resource-level scopes. Specifically, this means patients would need to have the ability to authorize access to their EHI at the individual FHIR resource level, from one specific FHIR resource (e.g., “Immunization”) up to all FHIR resources necessary to implement the standard adopted in § 170.213 and implementation specification adopted in § 170.215(a)(2).</li>
-	<li>Although Health IT Modules presented for testing and certification must include the ability for patients to authorize an application to receive their EHI based on FHIR resource-level scopes, Health IT Modules are not prohibited from presenting authorization scopes in a more user-friendly format (e.g. grouping resources under categories, renaming the scopes for easier comprehension by the end-user, using more granular scopes), as long as the ability for patients to authorize applications based on resource-level scopes is available, if requested by the patient.</li>
-	<li>Health IT Modules will only be tested for the "Patient Access for Standalone Apps" and "Clinician Access for EHR Launch" scenarios described in the standard adopted at § 170.215(a)(3).</li>
-	<li>Since "Encounter" is not currently a USCDI Data Class or Data Element, we will not test Health IT Modules for support for "context-ehr-encounter" or "context-standalone-encounter" SMART on FHIR Core Capabilities described in the standard adopted at § 170.215(a)(3). </li>
-	<li>Implementers of § 170.315(g)(10)-certified Health IT Modules should be mindful of the information blocking provisions.</li>
-	<li>As part of the requirements at § 170.315(g)(10)(v)(A)(1)(iii), health IT developers must publish the method(s) by which their Health IT Modules support the secure issuance of an initial refresh token to native applications according to the technical documentation requirements at § 170.315(g)(10)(viii) and transparency conditions at § 170.404(a)(2). </li>
-	<li>Application developer affirmations to health IT developers regarding the ability of their applications to secure a refresh token, a client secret, or both, must be treated in a good faith manner consistent with the provisions established in the openness and pro-competitive conditions at § 170.404(a)(4). </li>
-	<li>Health IT developers can determine the method(s) they use to support interactions with native applications and clarify that health IT developers are not required to support all methods third-party application developers seek to use. </li>
-	<li>ONC recognizes there may be some ambiguity in the HL7® <a href="http://hl7.org/fhir/smart-app-launch/">SMART Application Launch Framework Implementation Guide Release 1.0.0</a> standard (incorporated by reference at § 170.215(a)(3)) in its guidance for supporting native applications, in particular, in providing references to best practices, strategies, and examples such as “OAuth 2.0 for Native Apps: 8.5. Client Authentication”, “OAuth 2.0 Dynamic Client Registration Protocol”, and “universal redirect_uris” without a standardized solution. ONC provides flexibility for how the health IT developer implements the HL7® <a href="http://hl7.org/fhir/smart-app-launch/">SMART Application Launch Framework</a> implementation specification, as long as the  Certified Health IT Module supports for first time connections the issuance of three-month refresh tokens to native applications capable of securing a refresh token.</li>
-	<li>The paragraph at § 170.215(a)(3) requires health IT developers to support the SMART Application Launch Framework Implementation Guide (SMART IG) “SMART [on FHIR] Core Capabilities,” including “permission-offline,” which grants support for refresh tokens. The ONC Cures Act Final Rule states, <em>“…Importantly, the implementation specification adopted in § 170.215(a)(3) requires that patients have the ability to explicitly enable the “offline_access” scope during authorization. If the “offline_access” scope is not enabled by patients, patients will be required to re-authenticate and re-authorize an application's access to their EHI after the application's access token expires…” (</em><a href="https://www.federalregister.gov/d/2020-07419/p-1254">85 FR 25747</a><em>).</em> However, the ability of a patient to explicitly enable the “offline_access” scope during authorization is not described in the implementation specification. ONC clarifies that health IT developers must support the ability for patients to be provided information about an application’s request for persistent access <u>prior</u> to the patient sharing their health information, in order to enable patients to make an informed decision during authorization. Examples include, but are not limited to a health IT developer allowing patients to granularly grant “offline-access” scopes during authorization or clearly providing this information as a notice during authorization. The critical requirement is that patients are empowered to deny authorization for offline access.</li>
-</ul>
+- Health IT Modules will be explicitly tested for US Core IG operations using authentication and authorization tokens acquired via the process described in the implementation specification adopted in § 170.215(a)(3).
+- Only the relevant parts of the OpenID Connect Core 1.0 including errata set 1 adopted in § 170.215(b) that are also included in the implementation specification adopted in § 170.215(a)(3) will be in-scope for testing and certification.
+- The “SMART on FHIR Core Capabilities” in § 170.215(a)(3) are explicitly required for testing and certification because these capabilities are otherwise indicated as optional in the implementation specification. 
+- As part of the “permission-patient” “SMART on FHIR Core Capability” in § 170.215(a)(3), Health IT Modules presented for testing and certification must include the ability for patients to authorize an application to receive their electronic health information (EHI) based on FHIR resource-level scopes. Specifically, this means patients would need to have the ability to authorize access to their EHI at the individual FHIR resource level, from one specific FHIR resource (e.g., “Immunization”) up to all FHIR resources necessary to implement the standard adopted in § 170.213 and implementation specification adopted in § 170.215(a)(2).
+- Although Health IT Modules presented for testing and certification must include the ability for patients to authorize an application to receive their EHI based on FHIR resource-level scopes, Health IT Modules are not prohibited from presenting authorization scopes in a more user-friendly format (e.g. grouping resources under categories, renaming the scopes for easier comprehension by the end-user, using more granular scopes), as long as the ability for patients to authorize applications based on resource-level scopes is available, if requested by the patient.
+- Health IT Modules will only be tested for the "Patient Access for Standalone Apps" and "Clinician Access for EHR Launch" scenarios described in the standard adopted at § 170.215(a)(3).
+- Since "Encounter" is not currently a USCDI Data Class or Data Element, we will not test Health IT Modules for support for "context-ehr-encounter" or "context-standalone-encounter" SMART on FHIR Core Capabilities described in the standard adopted at § 170.215(a)(3). 
+- Implementers of § 170.315(g)(10)-certified Health IT Modules should be mindful of the information blocking provisions.
+- As part of the requirements at § 170.315(g)(10)(v)(A)(1)(iii), health IT developers must publish the method(s) by which their Health IT Modules support the secure issuance of an initial refresh token to native applications according to the technical documentation requirements at § 170.315(g)(10)(viii) and transparency conditions at § 170.404(a)(2). 
+- Application developer affirmations to health IT developers regarding the ability of their applications to secure a refresh token, a client secret, or both, must be treated in a good faith manner consistent with the provisions established in the openness and pro-competitive conditions at § 170.404(a)(4). 
+- Health IT developers can determine the method(s) they use to support interactions with native applications and clarify that health IT developers are not required to support all methods third-party application developers seek to use. 
+- ONC recognizes there may be some ambiguity in the HL7® <a href="http://hl7.org/fhir/smart-app-launch/">SMART Application Launch Framework Implementation Guide Release 1.0.0</a> standard (incorporated by reference at § 170.215(a)(3)) in its guidance for supporting native applications, in particular, in providing references to best practices, strategies, and examples such as “OAuth 2.0 for Native Apps: 8.5. Client Authentication”, “OAuth 2.0 Dynamic Client Registration Protocol”, and “universal redirect_uris” without a standardized solution. ONC provides flexibility for how the health IT developer implements the HL7® <a href="http://hl7.org/fhir/smart-app-launch/">SMART Application Launch Framework</a> implementation specification, as long as the  Certified Health IT Module supports for first time connections the issuance of three-month refresh tokens to native applications capable of securing a refresh token.
+- The paragraph at § 170.215(a)(3) requires health IT developers to support the SMART Application Launch Framework Implementation Guide (SMART IG) “SMART [on FHIR] Core Capabilities,” including “permission-offline,” which grants support for refresh tokens. The ONC Cures Act Final Rule states, <em>“…Importantly, the implementation specification adopted in § 170.215(a)(3) requires that patients have the ability to explicitly enable the “offline_access” scope during authorization. If the “offline_access” scope is not enabled by patients, patients will be required to re-authenticate and re-authorize an application's access to their EHI after the application's access token expires…” (</em><a href="https://www.federalregister.gov/d/2020-07419/p-1254">85 FR 25747</a><em>).</em> However, the ability of a patient to explicitly enable the “offline_access” scope during authorization is not described in the implementation specification. ONC clarifies that health IT developers must support the ability for patients to be provided information about an application’s request for persistent access <u>prior</u> to the patient sharing their health information, in order to enable patients to make an informed decision during authorization. Examples include, but are not limited to a health IT developer allowing patients to granularly grant “offline-access” scopes during authorization or clearly providing this information as a notice during authorization. The critical requirement is that patients are empowered to deny authorization for offline access.
+
 
 ### Subsequent Authentication / Authorization for Single Patient Services - § 170.315(g)(10)(V)(A)(2)
 **Regulation text**: (2) Subsequent connections. (i) Access must be granted to patient data in accordance with the implementation specification adopted in § 170.215(a)(3) without requiring reauthorization and re-authentication when a valid refresh token is supplied by the application. (ii) A Health IT Module's authorization server must issue a refresh token valid for a new period of no less than three months to applications capable of storing a client secret.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>No additional clarifications.</li>
-</ul>
+- No additional clarifications.
+
 
 ### Authentication / Authorization for Multiple Patient Services - § 170.315(g)(10)(V)(B)
 **Regulation text**: (B) Authentication and authorization for system scopes. Authentication and authorization must occur during the process of granting an application access to patient data in accordance with the “SMART Backend Services: Authorization Guide” section of the implementation specification adopted in § 170.215(a)(4) and the application must be issued a valid access token.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>No additional clarifications.</li>
-</ul>
+- No additional clarifications.
+
 
 ### Patient Authorization Revocation - § 170.315(g)(10)(VI)
 **Regulation text**: (vi) Patient authorization revocation. A Health IT Module's authorization server must be able to revoke an authorized application's access at a patient's direction.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>This is a functional requirement to allow health IT developers the ability to implement it in a way that best suits their existing infrastructure and allows for innovative models for authorization revocation to develop.</li>
-	<li>Patients are expected to have the ability to revoke an authorized application’s access to their EHI at any time.</li>
-</ul>
+- This is a functional requirement to allow health IT developers the ability to implement it in a way that best suits their existing infrastructure and allows for innovative models for authorization revocation to develop.
+- Patients are expected to have the ability to revoke an authorized application’s access to their EHI at any time.
+
 
 ### Token Introspection - § 170.315(g)(10)(VII)
 **Regulation text**: (vii) Token introspection. A Health IT Module's authorization server must be able to receive and validate tokens it has issued.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>Although ONC does not specify a standard for token introspection, ONC encourages industry to coalesce around using a common standard, like OAuth 2.0 Token Introspection (RFC 7662).</li>
-</ul>
+- Although ONC does not specify a standard for token introspection, ONC encourages industry to coalesce around using a common standard, like OAuth 2.0 Token Introspection (RFC 7662).
+
 
 ### Technical API Documentation Content - § 170.315(g)(10)(VIII)(A)
 **Regulation text**: (viii) Documentation. (A) The API(s) must include complete accompanying documentation that contains, at a minimum: (1) API syntax, function names, required and optional parameters supported and their data types, return variables and their types/structures, exceptions and exception handling methods and their returns. (2) The software components and configurations that would be necessary for an application to implement in order to be able to successfully interact with the API and process its response(s). (3) All applicable technical requirements and attributes necessary for an application to be registered with a Health IT Module's authorization server.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>Health IT developers are not required to re-publish documentation from the adopted standards and implementation specifications. However, health IT developers must publish documentation that goes beyond the adopted standards and implementation specifications.</li>
-	<li>Health IT developers are expected to disclose any additional data their § 170.315(g)(10)-certified Health IT Module supports in the context of the adopted standards and implementation specifications.</li>
-</ul>
+- Health IT developers are not required to re-publish documentation from the adopted standards and implementation specifications. However, health IT developers must publish documentation that goes beyond the adopted standards and implementation specifications.
+- Health IT developers are expected to disclose any additional data their § 170.315(g)(10)-certified Health IT Module supports in the context of the adopted standards and implementation specifications.
+
 
 ### Technical API Documentation Availability - § 170.315(g)(10)(VIII)(B)
 **Regulation text**: (B) The documentation used to meet paragraph (g)(10)(viii)(A) of this section must be available via a publicly accessible hyperlink without any preconditions or additional steps.
 
 *Clarifications Included in (g)(10) Certification Companion Guide (CCG):*
 
-<ul><li>No additional clarifications.</li>
-</ul>
+- No additional clarifications.
+
 
 ### *Other standards not directly referenced in § 170.315(g)(10)*
 
