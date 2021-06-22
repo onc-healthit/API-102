@@ -4,7 +4,7 @@ import re
 import requests
 import json
 
-call_api = True
+call_api = False
 
 def read_to_line_end(input_str, pos):
     """Builds a string from a position to the end of the line
@@ -123,7 +123,7 @@ def process_template(onc_template_str, file_name):
     print("Done processing {}".format(file_name))
 
 # Main Code
-choice = input("Press \"A\" to convert all .onc files or enter a specific file name: ")
+choice = input("Press \"A\" to convert all .md files or enter a specific file name: ")
 
 if choice == "A":
     directory = "{}\\pre_processed_docs".format(os.getcwd())
