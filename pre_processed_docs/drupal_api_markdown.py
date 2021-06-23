@@ -4,7 +4,7 @@ import re
 import requests
 import json
 
-call_api = True
+call_api = False
 
 def read_to_line_end(input_str, pos):
     """Builds a string from a position to the end of the line
@@ -49,7 +49,7 @@ def html_list_to_markdown(input):
     
     input = input.replace("\t", "") # Removing tabs
 
-    links = re.findall(r"<a[^>]*>[^<]+<\/a>", input)
+    links = re.findall(r"<a[^>]*>[^<]+<\/a>", input) # Find all of the <a> (link) tags
 
     # Augment link tags so that they open in new tab
     for link in links:
@@ -86,8 +86,6 @@ def gather_data_from_web():
 
         web_data[element] = data
 
-    # with open('web_data_2.json', 'w') as f:
-    #     json.dump(web_data, f)
     return web_data
 
 def process_template(onc_template_str, file_name):

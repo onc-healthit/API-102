@@ -4,6 +4,7 @@
 *[APIs]: Application Programming Interfaces
 *[HL7]: Health Level 7
 *[IG]: Implementation guide
+*[CFR]: Code of Federal Regulations
 
 *[Health IT Certification Program]: A voluntary program administered by ONC to allow health IT developers to test and ceritfy health IT to certification criteria
 *[API criteria]: Certification criteria at § 170.315(g)(7) - (10)
