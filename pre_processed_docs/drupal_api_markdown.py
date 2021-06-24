@@ -40,6 +40,10 @@ def strip_html(data):
     p = re.compile(r'<.*?>')
     return p.sub('', data).strip()
 
+def strip_non_alphanumeric(data):
+    p = re.compile(r'\W+')
+    return p.sub('', data).strip()
+
 def html_list_to_markdown(input, tabbed = False):
     input = re.sub(r'<ul ?[^>]*>', '', input) # Removing opening '<ul>' tag
 
@@ -87,6 +91,7 @@ def gather_data_from_web(criterion):
                 data_json = json.load(f)
 
         element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
+        element = strip_non_alphanumeric(element)
         data = data_json["field_technical_explanations_and"][0]["processed"]
 
         web_data[element] = data
@@ -126,7 +131,7 @@ def process_template(onc_template_str, file_name):
             print("Exiting...")
             exit()
     else:
-        with open('cached_test_files/web_data.json') as f:
+        with open('cached_test_files/404_web_data_cleaned.json') as f:
             web_data = json.load(f)
 
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
@@ -138,9 +143,17 @@ def process_template(onc_template_str, file_name):
     # Will continue looping for each load function present in template
     while ref_tag_index > 0:
         function_line = read_to_line_end(onc_template_str, ref_tag_index)
+        function_line_striped = ""
 
-        referenced_parameters = re.findall(r'\{(.*?)\}', function_line)[0].split(",") # Extracting parameters
+        # Strip non alphanumeric characters out of content between quotes
+        in_quotes = re.findall('"([^"]*)"', function_line) # Extracting data between quotes
+        for quote in in_quotes:
+            striped_quote = strip_non_alphanumeric(quote)
+            function_line_striped = function_line.replace(quote, striped_quote)
+
+        referenced_parameters = re.findall(r'\{(.*?)\}', function_line_striped)[0].split(",") # Extracting parameters
         referenced_paragraph_key = re.findall('"([^"]*)"', referenced_parameters[0])[0] # Extracting paragraph key
+        referenced_paragraph_key = strip_non_alphanumeric(referenced_paragraph_key)
 
         # Checking for tabbed parameter
         tabbed = False
