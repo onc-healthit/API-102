@@ -6,7 +6,7 @@ import json
 import time
 from pathlib import Path
 
-call_api = True
+call_api = False
 
 def read_to_line_end(input_str, pos):
     """Builds a string from a position to the end of the line
@@ -66,7 +66,7 @@ def html_list_to_markdown(input, tabbed = False):
 def gather_data_from_web(criterion):
     web_data = {}
 
-    base_url = "https://healthit.gov/test-method"
+    base_url = "https://healthit.gov"
 
     entity_ids_json = None
     if call_api:
@@ -93,10 +93,26 @@ def gather_data_from_web(criterion):
 
     return web_data
 
+def write_processed_doc(output, file_name):
+    # Output final result to file
+    path = str(Path(os.getcwd()).parent) # Using Path to move up one directory level
+    output_file = open("{}\\docs\\{}".format(path, file_name), 'w', encoding='utf-8')
+    output = output.strip() # Strip extra newlines and whitespace
+    output_file.write(output)
+    output_file.close()
+
+    print("Done processing {}. File exported to: {}".format(file_name, "{}\\docs\\{}".format(path, file_name)))
+
 def process_template(onc_template_str, file_name):
     # Search for the criterion endpoint path
     criterion_endpoint_tag = "$criterion-endpoint{"
     criterion_endpoint_tag_index = onc_template_str.find(criterion_endpoint_tag)
+
+    # If no endpoint tag is found, write out file and return
+    if criterion_endpoint_tag_index == -1:
+        write_processed_doc(onc_template_str, file_name)
+        return
+
     criterion_endpoint_tag = function_line = read_to_line_end(onc_template_str, criterion_endpoint_tag_index)
     criterion_endpoint = re.findall('"([^"]*)"', criterion_endpoint_tag)[0] # Extracting criterion endpoint value
     onc_template_str = onc_template_str.replace(criterion_endpoint_tag, "")
@@ -143,14 +159,7 @@ def process_template(onc_template_str, file_name):
         onc_template_str = onc_template_str.replace(function_line, clarifications_list)
         ref_tag_index = onc_template_str.find(ref_tag) # Search for another ref function
     
-    # Output final result to file
-    path = str(Path(os.getcwd()).parent) # Using Path to move up one directory level
-    output_file = open("{}\\docs\\{}".format(path, file_name), 'w', encoding='utf-8')
-    onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
-    output_file.write(onc_template_str)
-    output_file.close()
-
-    print("Done processing {}. File exported to: {}".format(file_name, "{}\\docs\\{}".format(path, file_name)))
+    write_processed_doc(onc_template_str, file_name)
 
 # Main Code
 choice = input("Press \"A\" to convert all .md files or enter a specific file name: ")
