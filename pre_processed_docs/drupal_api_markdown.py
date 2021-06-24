@@ -60,11 +60,10 @@ def html_list_to_markdown(input):
 
     return input
 
-def gather_data_from_web():
+def gather_data_from_web(criterion):
     web_data = {}
 
     base_url = "https://healthit.gov/test-method"
-    criterion = "standardized-api-patient-and-population-services"
 
     entity_ids_json = None
     if call_api:
@@ -92,9 +91,15 @@ def gather_data_from_web():
     return web_data
 
 def process_template(onc_template_str, file_name):
+    # Search for the criterion endpoint path
+    criterion_endpoint_tag = "$criterion-endpoint("
+    criterion_endpoint_tag_index = onc_template_str.find(criterion_endpoint_tag)
+    criterion_endpoint = function_line = read_to_line_end(onc_template_str, criterion_endpoint_tag_index)
+    criterion_endpoint = re.findall('"([^"]*)"', criterion_endpoint)[0] # Extracting criterion endpoint value
+
     web_data = None
     if call_api:
-        web_data = gather_data_from_web()
+        web_data = gather_data_from_web(criterion_endpoint)
     else:
         with open('cached_test_files/web_data.json') as f:
             web_data = json.load(f)
@@ -102,12 +107,12 @@ def process_template(onc_template_str, file_name):
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
 
     # Search for the first ref
-    json_search_function = "$ref("
-    index = onc_template_str.find(json_search_function)
+    ref_tag = "$ref("
+    ref_tag_index = onc_template_str.find(ref_tag)
 
     # Will continue looping for each load function present in template
-    while index > 0:
-        function_line = read_to_line_end(onc_template_str, index)
+    while ref_tag_index > 0:
+        function_line = read_to_line_end(onc_template_str, ref_tag_index)
 
         referenced_paragraph_key = re.findall('"([^"]*)"', function_line)[0] # Extracting paragraph key
         referenced_paragraph_data = web_data[referenced_paragraph_key]
@@ -118,7 +123,7 @@ def process_template(onc_template_str, file_name):
         clarifications_list = html_list_to_markdown(clarifications_list)
 
         onc_template_str = onc_template_str.replace(function_line, clarifications_list)
-        index = onc_template_str.find(json_search_function) # Search for another ref function
+        ref_tag_index = onc_template_str.find(ref_tag) # Search for another ref function
     
     # Output final result to file
     path = str(Path(os.getcwd()).parent) # Using Path to move up one directory level
