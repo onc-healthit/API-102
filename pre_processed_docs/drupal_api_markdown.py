@@ -40,16 +40,19 @@ def strip_html(data):
     p = re.compile(r'<.*?>')
     return p.sub('', data).strip()
 
-def html_list_to_markdown(input):
+def html_list_to_markdown(input, tabbed = False):
     input = re.sub(r'<ul ?[^>]*>', '', input) # Removing opening '<ul>' tag
 
     input = input.replace("</ul>", "") # Removing closing '</ul>' tag
+
+    input = input.replace("\t", "") # Removing tabs
     
-    input = input.replace("<li>", "- ") # Replcaing <li> with '-' (markdwon list syntax)
+    if tabbed:
+        input = input.replace("<li>", "\t- ") # Replcaing <li> with '\t-' (markdwon list syntax + a tab)
+    else:
+        input = input.replace("<li>", "- ") # Replcaing <li> with '-' (markdwon list syntax)
     
     input = input.replace("</li>", "") # Removing </li> tags
-    
-    input = input.replace("\t", "") # Removing tabs
 
     links = re.findall(r"<a[^>]*>[^<]+<\/a>", input) # Find all of the <a> (link) tags
 
@@ -92,7 +95,7 @@ def gather_data_from_web(criterion):
 
 def process_template(onc_template_str, file_name):
     # Search for the criterion endpoint path
-    criterion_endpoint_tag = "$criterion-endpoint("
+    criterion_endpoint_tag = "$criterion-endpoint{"
     criterion_endpoint_tag_index = onc_template_str.find(criterion_endpoint_tag)
     criterion_endpoint = function_line = read_to_line_end(onc_template_str, criterion_endpoint_tag_index)
     criterion_endpoint = re.findall('"([^"]*)"', criterion_endpoint)[0] # Extracting criterion endpoint value
@@ -107,20 +110,29 @@ def process_template(onc_template_str, file_name):
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
 
     # Search for the first ref
-    ref_tag = "$ref("
+    ref_tag = "$ref{"
     ref_tag_index = onc_template_str.find(ref_tag)
 
     # Will continue looping for each load function present in template
     while ref_tag_index > 0:
         function_line = read_to_line_end(onc_template_str, ref_tag_index)
 
-        referenced_paragraph_key = re.findall('"([^"]*)"', function_line)[0] # Extracting paragraph key
+        referenced_parameters = re.findall(r'\{(.*?)\}', function_line)[0].split(",") # Extracting parameters
+        referenced_paragraph_key = re.findall('"([^"]*)"', referenced_parameters[0])[0] # Extracting paragraph key
+
+        # Checking for tabbed parameter
+        tabbed = False
+        if len(referenced_parameters) > 1:
+            parameter = referenced_parameters[1].strip()
+            if parameter == "tabbed":
+                tabbed = True
+
         referenced_paragraph_data = web_data[referenced_paragraph_key]
 
         clarifications_list = re.findall('<ul ?[^}]*>[^}]*<\/ul>', referenced_paragraph_data) # Extracting unordered list
         clarifications_list = clarifications_list[0]
 
-        clarifications_list = html_list_to_markdown(clarifications_list)
+        clarifications_list = html_list_to_markdown(clarifications_list, tabbed)
 
         onc_template_str = onc_template_str.replace(function_line, clarifications_list)
         ref_tag_index = onc_template_str.find(ref_tag) # Search for another ref function

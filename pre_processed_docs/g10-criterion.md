@@ -1,4 +1,4 @@
-$criterion-endpoint("standardized-api-patient-and-population-services")
+$criterion-endpoint{"standardized-api-patient-and-population-services"}
 
 # Standardized API Certification Criterion at § 170.315(g)(10)
 
@@ -30,7 +30,7 @@ The API certification criterion finalized in § 170.315(g)(10) was included as p
 ### Entire Criterion
 
 ??? quote "*Clarifications included in the (g)(10) CCG that apply to the entire criterion*"
-$ref(g-10:CCG["Applies to Entire Criterion"])
+$ref{g-10:CCG["Applies to Entire Criterion"], tabbed}
 
 *Additional clarifications that apply to the entire (g)(10) criterion:*
 
@@ -47,7 +47,7 @@ health care providers to implement Health IT Modules certified to requirements i
     (i) Data response. (A) Respond to requests for a single patient's data according to the standard adopted in § 170.215(a)(1) and implementation specification adopted in § 170.215(a)(2), including the mandatory capabilities described in “US Core Server CapabilityStatement,” for each of the data included in the standard adopted in § 170.213. All data elements indicated as “mandatory” and “must support” by the standards and implementation specifications must be supported.
 
 ??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(10)(i)(A)*"
-$ref(g-10:CCG["Paragraph (10)(i)(A)"])
+$ref{g-10:CCG["Paragraph (10)(i)(A)"]}
 
 !!! example "Examples of “must support” in the US Core IG 3.1.1:"
     In US Core 3.1.1, the profile element Observation.value[x] contains the following Choices:
