@@ -3,6 +3,7 @@ import os
 import re
 import requests
 import json
+from pathlib import Path
 
 call_api = False
 
@@ -78,7 +79,7 @@ def gather_data_from_web():
         if call_api:
             data_json = requests.get("{}/{}?_format=json".format(data_url, entity_id["target_id"])).json()
         else:
-            with open('cached_response.json') as f:
+            with open('cached_test_files/cached_response.json') as f:
                 data_json = json.load(f)
 
         element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
@@ -89,13 +90,11 @@ def gather_data_from_web():
     return web_data
 
 def process_template(onc_template_str, file_name):
-    print("Processing {}...".format(file_name))  
-
     web_data = None
     if call_api:
         web_data = gather_data_from_web()
     else:
-        with open('web_data.json') as f:
+        with open('cached_test_files/web_data.json') as f:
             web_data = json.load(f)
 
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
@@ -120,18 +119,19 @@ def process_template(onc_template_str, file_name):
         index = onc_template_str.find(json_search_function) # Search for another ref function
     
     # Output final result to file
-    output_file = open("{}\\docs\\{}".format(os.getcwd(), file_name), 'w', encoding='utf-8')
+    path = str(Path(os.getcwd()).parent) # Using Path to move up one directory level
+    output_file = open("{}\\docs\\{}".format(path, file_name), 'w', encoding='utf-8')
     onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
     output_file.write(onc_template_str)
     output_file.close()
 
-    print("Done processing {}".format(file_name))
+    print("Done processing {}. File exported to: {}".format(file_name, "{}\\docs\\{}".format(path, file_name)))
 
 # Main Code
 choice = input("Press \"A\" to convert all .md files or enter a specific file name: ")
 
 if choice == "A":
-    directory = "{}\\pre_processed_docs".format(os.getcwd())
+    directory = os.getcwd()
 
     for subdir, dirs, files in os.walk(directory):
         for file in files:
@@ -139,6 +139,7 @@ if choice == "A":
             if ext == ".md":
                 onc_template = open("{}\\{}".format(directory, file), 'r', encoding="utf8")
                 onc_template_str = onc_template.read()  
+                print("Processing {}...".format("{}\\{}".format(directory, file)))  
                 process_template(onc_template_str, file)
 else:
     file_read = False

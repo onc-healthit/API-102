@@ -1,0 +1,94 @@
+{
+    "field_clarification_table": [
+        {
+            "target_id": 45956,
+            "target_revision_id": 519596,
+            "target_type": "paragraph",
+            "target_uuid": "165c438e-d4bd-4448-b771-b4273bc843b9"
+        },
+        {
+            "target_id": 46286,
+            "target_revision_id": 519601,
+            "target_type": "paragraph",
+            "target_uuid": "2d13d3e4-2b32-44e4-bbb2-b4e9a55308dd"
+        },
+        {
+            "target_id": 46291,
+            "target_revision_id": 519606,
+            "target_type": "paragraph",
+            "target_uuid": "c15167c7-a40b-407b-98e5-7043a04707aa"
+        },
+        {
+            "target_id": 46296,
+            "target_revision_id": 519611,
+            "target_type": "paragraph",
+            "target_uuid": "5a9a095c-688e-42d6-aa26-547cb1fd35f8"
+        },
+        {
+            "target_id": 46301,
+            "target_revision_id": 519616,
+            "target_type": "paragraph",
+            "target_uuid": "95d6ad26-c1f9-4b06-9cd2-b8da07d128b2"
+        },
+        {
+            "target_id": 46306,
+            "target_revision_id": 519621,
+            "target_type": "paragraph",
+            "target_uuid": "4928c353-b895-4e8c-8606-3acaeae936c0"
+        },
+        {
+            "target_id": 46311,
+            "target_revision_id": 519076,
+            "target_type": "paragraph",
+            "target_uuid": "3474d04e-8f85-4019-8a45-cae982549557"
+        },
+        {
+            "target_id": 46316,
+            "target_revision_id": 519081,
+            "target_type": "paragraph",
+            "target_uuid": "3150f9ba-9df0-4744-a280-6243d2ca57de"
+        },
+        {
+            "target_id": 46321,
+            "target_revision_id": 519086,
+            "target_type": "paragraph",
+            "target_uuid": "0df0823e-f60d-45f9-b66a-2c7e13a23b24"
+        },
+        {
+            "target_id": 46326,
+            "target_revision_id": 519091,
+            "target_type": "paragraph",
+            "target_uuid": "a003682f-6c26-4bdc-aff5-9f1877b212f9"
+        },
+        {
+            "target_id": 46331,
+            "target_revision_id": 519096,
+            "target_type": "paragraph",
+            "target_uuid": "89d17200-e648-4608-bb53-d27ff98dede8"
+        },
+        {
+            "target_id": 46336,
+            "target_revision_id": 519101,
+            "target_type": "paragraph",
+            "target_uuid": "5b108fdb-bbff-4143-8ad9-5d464820c0cc"
+        },
+        {
+            "target_id": 46341,
+            "target_revision_id": 519106,
+            "target_type": "paragraph",
+            "target_uuid": "6dfcabea-521b-473e-801a-7cf2559d9f59"
+        },
+        {
+            "target_id": 46346,
+            "target_revision_id": 519111,
+            "target_type": "paragraph",
+            "target_uuid": "caedf4a5-b576-45d1-ad53-f0ecb55969fa"
+        },
+        {
+            "target_id": 46351,
+            "target_revision_id": 519116,
+            "target_type": "paragraph",
+            "target_uuid": "fe15a1ec-811d-4696-adc3-e99a4111cfd3"
+        }
+    ]
+}
