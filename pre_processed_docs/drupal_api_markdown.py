@@ -79,7 +79,7 @@ def gather_data_from_web():
         if call_api:
             data_json = requests.get("{}/{}?_format=json".format(data_url, entity_id["target_id"])).json()
         else:
-            with open('cached_response.json') as f:
+            with open('cached_test_files/cached_response.json') as f:
                 data_json = json.load(f)
 
         element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
@@ -94,7 +94,7 @@ def process_template(onc_template_str, file_name):
     if call_api:
         web_data = gather_data_from_web()
     else:
-        with open('web_data.json') as f:
+        with open('cached_test_files/web_data.json') as f:
             web_data = json.load(f)
 
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
