@@ -2,7 +2,7 @@
 
 This section considers the standardized API for patient and population services certification criterion, including all of the content contained in the <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-1162">ONC Cures Act Final Rule API preamble</a>, the <a target = "_blank" href = "https://www.federalregister.gov/d/2020-24376/p-136">IFC API preamble</a>, and the regulation paragraphs in § 170.315(g)(10).
 
-## Summary
+## Summary 
 The criterion defined at § 170.315(g)(10) requires certified Health IT Modules to support: 
 
 - **Standardized API for Single Patient Services**
