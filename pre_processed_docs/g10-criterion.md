@@ -1,4 +1,4 @@
-$criterion-endpoint{"standardized-api-patient-and-population-services"}
+$criterion-endpoint{"test-method/standardized-api-patient-and-population-services"}
 
 # Standardized API Certification Criterion at § 170.315(g)(10)
 
