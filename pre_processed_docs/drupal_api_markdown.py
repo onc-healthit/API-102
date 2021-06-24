@@ -3,6 +3,7 @@ import os
 import re
 import requests
 import json
+import time
 from pathlib import Path
 
 call_api = False
@@ -78,6 +79,7 @@ def gather_data_from_web():
         data_json = None
         if call_api:
             data_json = requests.get("{}/{}?_format=json".format(data_url, entity_id["target_id"])).json()
+            time.sleep(2) # Buffer between API calls
         else:
             with open('cached_test_files/cached_response.json') as f:
                 data_json = json.load(f)
