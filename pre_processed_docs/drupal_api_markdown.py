@@ -6,7 +6,7 @@ import json
 import time
 from pathlib import Path
 
-call_api = False
+call_api = True
 
 def read_to_line_end(input_str, pos):
     """Builds a string from a position to the end of the line
@@ -97,12 +97,18 @@ def process_template(onc_template_str, file_name):
     # Search for the criterion endpoint path
     criterion_endpoint_tag = "$criterion-endpoint{"
     criterion_endpoint_tag_index = onc_template_str.find(criterion_endpoint_tag)
-    criterion_endpoint = function_line = read_to_line_end(onc_template_str, criterion_endpoint_tag_index)
-    criterion_endpoint = re.findall('"([^"]*)"', criterion_endpoint)[0] # Extracting criterion endpoint value
+    criterion_endpoint_tag = function_line = read_to_line_end(onc_template_str, criterion_endpoint_tag_index)
+    criterion_endpoint = re.findall('"([^"]*)"', criterion_endpoint_tag)[0] # Extracting criterion endpoint value
+    onc_template_str = onc_template_str.replace(criterion_endpoint_tag, "")
 
     web_data = None
     if call_api:
-        web_data = gather_data_from_web(criterion_endpoint)
+        api_check = input("Warning! Numerous API calls are about to be made, are you sure you want to proceed? ('y' for yes): ")
+        if api_check.lower() == 'y':
+            web_data = gather_data_from_web(criterion_endpoint)
+        else:
+            print("Exiting...")
+            exit()
     else:
         with open('cached_test_files/web_data.json') as f:
             web_data = json.load(f)
