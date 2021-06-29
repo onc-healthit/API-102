@@ -5,6 +5,7 @@ import requests
 import json
 import time
 from pathlib import Path
+from bs4 import BeautifulSoup
 
 call_api = False
 
@@ -35,37 +36,49 @@ def read_to_line_end(input_str, pos):
 
     return input_str[pos:pointer]
 
-def strip_html(data):
-    # https://stackoverflow.com/a/3398894
-    p = re.compile(r'<.*?>')
-    return p.sub('', data).strip()
-
 def strip_non_alphanumeric(data):
     p = re.compile(r'\W+')
     return p.sub('', data).strip()
 
-def html_list_to_markdown(input, tabbed = False):
-    input = re.sub(r'<ul ?[^>]*>', '', input) # Removing opening '<ul>' tag
+def resolve_li_links(md_str, links_soup):
+    for link in links_soup:
+        link["target"] = "_blank"
+        link_text = link.get_text()
+        link_html = str(link)
+        md_str = md_str.replace(link_text, link_html)
 
-    input = input.replace("</ul>", "") # Removing closing '</ul>' tag
+    return md_str
 
-    input = input.replace("\t", "") # Removing tabs
-    
-    if tabbed:
-        input = input.replace("<li>", "\t- ") # Replcaing <li> with '\t-' (markdwon list syntax + a tab)
-    else:
-        input = input.replace("<li>", "- ") # Replcaing <li> with '-' (markdwon list syntax)
-    
-    input = input.replace("</li>", "") # Removing </li> tags
+def html_list_to_markdown(input, prefix = ""):
+    li_tags = input.find("ul").contents
 
-    links = re.findall(r"<a[^>]*>[^<]+<\/a>", input) # Find all of the <a> (link) tags
+    output = ""
 
-    # Augment link tags so that they open in new tab
-    for link in links:
-        tabbed_link = link.replace("<a", "<a target = \"_blank\"")
-        input = input.replace(link, tabbed_link)
+    for li_tag in li_tags:
+        nested_list = li_tag.find("ul")
 
-    return input
+        if nested_list == -1:
+            continue
+
+        if nested_list == None:
+            links = li_tag.find_all('a')
+
+            li_tag_str = li_tag.get_text()
+
+            if links:
+                li_tag_str = resolve_li_links(li_tag_str, links)
+
+            output = output + "{}- ".format(prefix) + li_tag_str + "\n"
+        else:
+            text = li_tag.next.get_text()
+
+            links = li_tag.next.find_all('a')
+            if links:
+                text = resolve_li_links(text, links)
+
+            output = output + "{}- {}\n".format(prefix, text) + html_list_to_markdown(li_tag, prefix + "\t")       
+
+    return output
 
 def gather_data_from_web(criterion):
     web_data = {}
@@ -90,7 +103,11 @@ def gather_data_from_web(criterion):
             with open('cached_test_files/cached_response.json') as f:
                 data_json = json.load(f)
 
-        element = strip_html(data_json["field_standard_s_referenced"][0]["processed"])
+        element = data_json["field_standard_s_referenced"][0]["processed"]
+        
+        soup = BeautifulSoup(element, 'html.parser')
+        element = soup.get_text()
+
         element = strip_non_alphanumeric(element)
         data = data_json["field_technical_explanations_and"][0]["processed"]
 
@@ -164,10 +181,13 @@ def process_template(onc_template_str, file_name):
 
         referenced_paragraph_data = web_data[referenced_paragraph_key]
 
-        clarifications_list = re.findall('<ul ?[^}]*>[^}]*<\/ul>', referenced_paragraph_data) # Extracting unordered list
-        clarifications_list = clarifications_list[0]
+        soup = BeautifulSoup(referenced_paragraph_data, 'html.parser')
 
-        clarifications_list = html_list_to_markdown(clarifications_list, tabbed)
+        clarifications_list = ""
+        if tabbed:
+            clarifications_list = html_list_to_markdown(soup, "\t")
+        else:
+            clarifications_list = html_list_to_markdown(soup)
 
         onc_template_str = onc_template_str.replace(function_line, clarifications_list)
         ref_tag_index = onc_template_str.find(ref_tag) # Search for another ref function
@@ -194,7 +214,8 @@ else:
     # Attempt to read in file and re-prompt if not found
     while not file_read:
         try:
-            onc_template = open(choice, 'r')
+            file_path = "{}\\{}".format(os.getcwd(), choice)
+            onc_template = open("{}\\{}".format(os.getcwd(), choice), 'r', encoding="utf8")
             file_read = True
             onc_template_str = onc_template.read()
             onc_template.close()
