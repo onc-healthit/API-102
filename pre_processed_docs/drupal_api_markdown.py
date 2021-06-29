@@ -119,7 +119,6 @@ def write_processed_doc(output, file_name):
     # Output final result to file
     path = str(Path(os.getcwd()).parent) # Using Path to move up one directory level
     output_file = open("{}\\docs\\{}".format(path, file_name), 'w', encoding='utf-8')
-    output = output.strip() # Strip extra newlines and whitespace
     output_file.write(output)
     output_file.close()
 
@@ -189,6 +188,7 @@ def process_template(onc_template_str, file_name):
         else:
             clarifications_list = html_list_to_markdown(soup)
 
+        onc_template_str = onc_template_str.strip() # Strip extra newlines and whitespace
         onc_template_str = onc_template_str.replace(function_line, clarifications_list)
         ref_tag_index = onc_template_str.find(ref_tag) # Search for another ref function
     
