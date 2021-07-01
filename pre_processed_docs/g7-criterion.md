@@ -33,3 +33,5 @@ $ref{g-7:CCG["Paragraph (g)(7)(ii)(A)(3)"], tabbed}
 
 ??? quote "*Clarifications included in the (g)(7) CCG that apply to paragraph § 170.315(g)(7)(ii)(B)*"
 $ref{g-7:CCG["Paragraph (g)(7)(ii)(B)"], tabbed}
+
+--8<-- "includes/abbreviations.md"

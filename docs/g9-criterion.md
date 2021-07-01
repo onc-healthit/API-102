@@ -52,3 +52,5 @@
 ??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(ii)(B)*"
 	- The hyperlink provided for all of the documentation referenced by provision (g)(9)(ii)(A) must reflect the most current version of the Health IT developer’s documentation.
 	- All of the documentation referenced by provision (g)(9)(ii)(A) must be accessible to the public via a hyperlink without additional access requirements, including, without limitation, any form of registration, account creation, “click-through” agreements, or requirement to provide contact details or other information prior to accessing the documentation.
+
+--8<-- "includes/abbreviations.md"
