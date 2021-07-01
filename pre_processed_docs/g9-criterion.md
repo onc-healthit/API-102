@@ -11,25 +11,25 @@ $ref{g-9:CCG["Applies to entire criterion"], tabbed}
 
 ### Functional Requirements (Data Categories)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(i)(A)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(i)(A)*"
 $ref{g-9:CCG["Paragraph (g)(9)(i)(A)"], tabbed}
 
 ### Functional Requirements (Date & Date Range)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(i)(B)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(i)(B)*"
 $ref{g-9:CCG["Paragraph (g)(9)(i)(B)"], tabbed}
 
 ### Documentation Requirements (API Interface)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(1)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(1)*"
 $ref{g-9:CCG["Paragraph (g)(9)(ii)(A)(1)"], tabbed}
 
 ### Documentation Requirements (API Interaction)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(2)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(2)*"
 $ref{g-9:CCG["Paragraph (g)(9)(ii)(A)(2)"], tabbed}
 
 ### Documentation Requirements (Availability)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(ii)(B)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(ii)(B)*"
 $ref{g-9:CCG["Paragraph (g)(9)(ii)(B)"], tabbed}

@@ -19,7 +19,7 @@
 
 ### Functional Requirements (Data Categories)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(i)(A)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(i)(A)*"
 	- Please refer to the USCDI for the data standards that are required.
 	- The technology specifications should be designed and implemented in such a way as to return meaningful responses to queries, particularly with regard to exceptions and exception handling, and should make it easy for applications to discover what data exists for the patient. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1109" target="_blank">80 FR 62678</a>]
 	- The term “token” that is used here is not to be interpreted as the token in the OAuth2 workflow, but simply as something that would uniquely identify a patient.
@@ -28,7 +28,7 @@
 
 ### Functional Requirements (Date & Date Range)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(i)(B)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(i)(B)*"
 	- Health IT returning an entire patient record that does not reflect the specific date or date range requested is not permissible when a specific date or date range is requested. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1109" target="_blank">80 FR 62678</a>]
 	- The developer can determine the method and the amount of data by which the health IT uniquely identifies a patient. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1101" target="_blank">80 FR 62678</a>]
 	- The API must be able to send, at minimum all required data for a specified date range(s). We acknowledge that there will be organizational policies and/or safety best practices that will dictate additional data to be sent and when data is considered complete and/or ready for being sent. This should be appropriately described in the API documentation.
@@ -37,18 +37,18 @@
 
 ### Documentation Requirements (API Interface)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(1)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(1)*"
 	- No additional clarifications available.
 
 
 ### Documentation Requirements (API Interaction)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(2)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(ii)(A)(2)*"
 	- No additional clarifications available.
 
 
 ### Documentation Requirements (Availability)
 
-??? quote "*Clarifications included in the (g)(10) CCG that apply to paragraph § 170.315(g)(9)(ii)(B)*"
+??? quote "*Clarifications included in the (g)(9) CCG that apply to paragraph § 170.315(g)(9)(ii)(B)*"
 	- The hyperlink provided for all of the documentation referenced by provision (g)(9)(ii)(A) must reflect the most current version of the Health IT developer’s documentation.
 	- All of the documentation referenced by provision (g)(9)(ii)(A) must be accessible to the public via a hyperlink without additional access requirements, including, without limitation, any form of registration, account creation, “click-through” agreements, or requirement to provide contact details or other information prior to accessing the documentation.
