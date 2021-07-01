@@ -70,9 +70,14 @@ def html_list_to_markdown(input, prefix = ""):
 
             output = output + "{}- ".format(prefix) + li_tag_str + "\n"
         else:
-            text = li_tag.next.get_text()
+            # Hacking a  deep copy of li_tag
+            li_tag_copy = str(li_tag)
+            li_tag_copy = BeautifulSoup(li_tag_copy, 'html.parser')
 
-            links = li_tag.next.find_all('a')
+            li_tag_copy.find("ul").decompose()
+            text = li_tag_copy.get_text()
+
+            links = li_tag_copy.find_all('a')
             if links:
                 text = resolve_li_links(text, links)
 
@@ -147,7 +152,7 @@ def process_template(onc_template_str, file_name):
             print("Exiting...")
             exit()
     else:
-        with open('cached_test_files/404_web_data_cleaned.json') as f:
+        with open('cached_test_files/g8-cache.json') as f:
             web_data = json.load(f)
 
     onc_template_str = re.sub('<!--(.*?)-->', "", onc_template_str) # Strip comments
