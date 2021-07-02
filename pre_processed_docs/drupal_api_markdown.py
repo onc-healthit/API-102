@@ -122,12 +122,13 @@ def gather_data_from_web(criterion):
 
 def write_processed_doc(output, file_name):
     # Output final result to file
-    path = str(Path(os.getcwd()).parent) # Using Path to move up one directory level
-    output_file = open("{}\\docs\\{}".format(path, file_name), 'w', encoding='utf-8')
+    path = Path(os.getcwd()).parent # Using Path to move up one directory level
+    file_to_save = path / "docs" / file_name
+    output_file = open(file_to_save, 'w', encoding='utf-8')
     output_file.write(output)
     output_file.close()
 
-    print("Done processing {}. File exported to: {}".format(file_name, "{}\\docs\\{}".format(path, file_name)))
+    print("Done processing {}. File exported to: {}".format(file_name, file_to_save))
 
 def process_template(onc_template_str, file_name):
     # Search for the criterion endpoint path
@@ -219,8 +220,7 @@ else:
     # Attempt to read in file and re-prompt if not found
     while not file_read:
         try:
-            file_path = "{}\\{}".format(os.getcwd(), choice)
-            onc_template = open("{}\\{}".format(os.getcwd(), choice), 'r', encoding="utf8")
+            onc_template = open(choice, 'r', encoding="utf8")
             file_read = True
             onc_template_str = onc_template.read()
             onc_template.close()
