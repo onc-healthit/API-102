@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 from bs4 import BeautifulSoup
 
-call_api = False
+call_api = True
 
 def read_to_line_end(input_str, pos):
     """Builds a string from a position to the end of the line
@@ -210,7 +210,7 @@ if choice == "A":
         for file in files:
             ext = os.path.splitext(file)[-1].lower()
             if ext == ".md":
-                onc_template = open("{}\\{}".format(directory, file), 'r', encoding="utf8")
+                onc_template = open(file, 'r', encoding="utf8")
                 onc_template_str = onc_template.read()  
                 print("Processing {}...".format("{}\\{}".format(directory, file)))  
                 process_template(onc_template_str, file)
