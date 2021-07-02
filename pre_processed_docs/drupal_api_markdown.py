@@ -211,8 +211,9 @@ if choice == "A":
             ext = os.path.splitext(file)[-1].lower()
             if ext == ".md":
                 onc_template = open(file, 'r', encoding="utf8")
-                onc_template_str = onc_template.read()  
-                print("Processing {}...".format("{}\\{}".format(directory, file)))  
+                onc_template_str = onc_template.read() 
+                file_log_str = Path(directory) / file 
+                print("Processing {}...".format(file_log_str))  
                 process_template(onc_template_str, file)
 else:
     file_read = False
