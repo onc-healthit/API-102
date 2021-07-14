@@ -1,6 +1,7 @@
 # Imports
 import os
 import re
+import sys
 import requests
 import json
 import time
@@ -200,10 +201,22 @@ def process_template(onc_template_str, file_name):
     
     write_processed_doc(onc_template_str, file_name)
 
-# Main Code
-choice = input("Press \"A\" to convert all .md files or enter a specific file name: ")
+def main():
+    opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
+    args = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
 
-if choice == "A":
+    params = zip(opts, args)
+
+    for (flag, value) in params:
+        # -i is "input" -- means specific file has been specified 
+        if flag == "-i":
+            onc_template = open(value, 'r', encoding="utf8")
+            onc_template_str = onc_template.read()
+            onc_template.close()
+            process_template(onc_template_str, value)
+            print("All processing complete!")
+            exit()
+
     directory = os.getcwd()
 
     for subdir, dirs, files in os.walk(directory):
@@ -215,20 +228,8 @@ if choice == "A":
                 file_log_str = Path(directory) / file 
                 print("Processing {}...".format(file_log_str))  
                 process_template(onc_template_str, file)
-else:
-    file_read = False
 
-    # Attempt to read in file and re-prompt if not found
-    while not file_read:
-        try:
-            onc_template = open(choice, 'r', encoding="utf8")
-            file_read = True
-            onc_template_str = onc_template.read()
-            onc_template.close()
-        except FileNotFoundError:
-            choice = input("File not found, enter a different file name: ")
-            continue
-     
-    process_template(onc_template_str, choice)
+    print("All processing complete!")
 
-print("All processing complete!")
+if __name__ == "__main__":
+    main()
