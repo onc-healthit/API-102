@@ -201,6 +201,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../helpful-links/" class="md-nav__link">
+        Helpful Links
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../g10-criterion/" class="md-nav__link">
         HL7 FHIR API criterion - (g)(10)
       </a>
@@ -356,6 +371,36 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-world-testing-conditions-maintenance/" class="md-nav__link">
+        Real World Testing Condition and Maintenance of Certification
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../standards-version-advancement-process/" class="md-nav__link">
+        Standards Version Advancement Process
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -459,9 +504,9 @@
 <ul>
 <li>For the purposes of certification there is no conformance requirement related to the registration of third party applications that use the <abbr title="Application Programming Interfaces">APIs</abbr>. If a Health IT module requires registration as a pre-condition for accessing the <abbr title="Application Programming Interfaces">APIs</abbr>, then, the process must be clearly specified in the <abbr title="Application Programming Interface">API</abbr> documentation as required by the criterion. We strongly believe that registration should not be used as a means to block information sharing via <abbr title="Application Programming Interfaces">APIs</abbr>.</li>
 <li>This criterion does not currently include any security requirements beyond the privacy and security approach detailed above, but we encourage organizations to follow security best practices and implement security controls, such as penetration testing, encryption, audits, and monitoring as appropriate. We expect health IT developers to include information on how to securely use their <abbr title="Application Programming Interfaces">APIs</abbr> in the public documentation required by the certification criteria and follow industry best practices. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1072" target="_blank">80 FR 62676</a>]</li>
-<li>We strongly encourage developers to build security into their <abbr title="Application Programming Interfaces">APIs</abbr> following best practice guidance, such as the Department of Homeland Security’s Build Security In initiative.1 [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1084" target="_blank">80 FR 62677</a>]</li>
+<li>We strongly encourage developers to build security into their <abbr title="Application Programming Interfaces">APIs</abbr> following best practice guidance, such as the <a href="https://us-cert.cisa.gov/bsi" target="_blank">Department of Homeland Security’s Build Security In</a> initiative. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1084" target="_blank">80 FR 62677</a>]</li>
 <li>A “trusted connection” means the link is encrypted/integrity protected according to § 170.210(<abbr title="FHIR® US Core Implementation Guide STU V3.1.1">a)(2</abbr>) or (c)(2). As such, we do not believe it is necessary to specifically name HTTPS and/or SSL/TLS as this standard already covers encryption and integrity protection for data in motion. [see also <a href="https://www.federalregister.gov/d/2015-25597/p-1072" target="_blank">80 FR 6267</a>]</li>
-<li><abbr title="Application Programming Interfaces">APIs</abbr> could be used when consent or authorization by an individual is required. In circumstances where there is a requirement to document a patient’s request or particular preferences, <abbr title="Application Programming Interfaces">APIs</abbr> can enable compliance with documentation requirements. The HIPAA Privacy Rule2 permits the use of electronic documents to qualify as writings for the purpose of proving signature, e.g., electronic signatures. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1094" target="_blank">80 FR 62677</a>]</li>
+<li><abbr title="Application Programming Interfaces">APIs</abbr> could be used when consent or authorization by an individual is required. In circumstances where there is a requirement to document a patient’s request or particular preferences, <abbr title="Application Programming Interfaces">APIs</abbr> can enable compliance with documentation requirements. The HIPAA Privacy Rule (45 <abbr title="Code of Federal Regulations">CFR</abbr> Part 160 and Part 164, Subparts A and E) permits the use of electronic documents to qualify as writings for the purpose of proving signature, e.g., electronic signatures. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1094" target="_blank">80 FR 62677</a>]</li>
 </ul>
 </li>
 <li>
@@ -473,36 +518,47 @@
 <ul>
 <li>If their <abbr title="Office of the National Coordinator for Health IT">ONC</abbr>-ACB requires notification or updated documentation associated with the functionality they changed. This procedure is at the discretion of the <abbr title="Office of the National Coordinator for Health IT">ONC</abbr>-ACB and may result in an additional CHPL listing.</li>
 <li>Pursuant to the certification criteria, there is a documentation portion in each. Which would include (publicly available) technical specs, configuration requirements, and terms of use. Insofar as a developer updates their <abbr title="Application Programming Interface">API</abbr> post-certification, they are expected to keep all of this documentation up-to-date. Similarly, <abbr title="Office of the National Coordinator for Health IT">ONC</abbr>-ACBs are expected to oversee/enforce/surveil that this action is taken and could find a non-conformity if those updates are not made.</li>
-<li>If any of their changes would require updates to the developer’s 170.523(k)(1) disclosures (the broader product transparency disclosures).</li>
+<li>If any of their changes would require updates to the developer’s 170.523(k)(1) disclosures (the broader product transparency disclosures).
+ </li>
 </ul>
 </li>
 </ul>
 </details>
 <h3 id="functional-requirement">Functional Requirement<a class="headerlink" href="#functional-requirement" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(i)</strong></summary><p>Functional requirement. The technology must be able to receive a request with sufficient information to uniquely identify a patient and return an ID or other token that can be used by an application to subsequently execute requests for that patient's data.</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(i)</em></summary><ul>
 <li>The developer can determine the method and the amount of data by which the health IT uniquely identifies a patient. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1101" target="_blank">80 FR 62678</a>]</li>
 <li>The term “token” is not to be interpreted as the token in the OAuth2 workflow, but simply as an identifier for something that would uniquely identify a patient.</li>
 </ul>
 </details>
 <h3 id="documentation-requirements-api-interface">Documentation Requirements (<abbr title="Application Programming Interface">API</abbr> Interface)<a class="headerlink" href="#documentation-requirements-api-interface" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A)(1)</strong></summary><p>(A) The <abbr title="Application Programming Interface">API</abbr> must include accompanying documentation that contains, at a minimum: (1) <abbr title="Application Programming Interface">API</abbr> syntax, function names, required and optional parameters and their data types, return variables and their types/structures, exceptions and exception handling methods and their returns.</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A)(1)</em></summary><ul>
 <li>No additional clarifications available.</li>
 </ul>
 </details>
 <h3 id="documentation-requirements-api-interaction">Documentation Requirements (<abbr title="Application Programming Interface">API</abbr> Interaction)<a class="headerlink" href="#documentation-requirements-api-interaction" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A)(2)</strong></summary><p>(2) The software components and configurations that would be necessary for an application to implement in order to be able to successfully interact with the <abbr title="Application Programming Interface">API</abbr> and process its response(s).</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A)(2)</em></summary><ul>
 <li>No additional clarifications available.</li>
 </ul>
 </details>
 <h3 id="documentation-requirements-api-terms-of-use">Documentation Requirements (<abbr title="Application Programming Interface">API</abbr> Terms of Use)<a class="headerlink" href="#documentation-requirements-api-terms-of-use" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A)(2)</strong></summary><p>(3) Terms of use. The terms of use for the <abbr title="Application Programming Interface">API</abbr> must be provided, including, at a minimum, any associated developer policies and required developer agreements.</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A)(3)</em></summary><ul>
 <li>Health IT developers must be clear and transparent about the general terms of agreements or contracts that will typically apply to all prospective third-party applications.</li>
 <li>Health IT developers that typically execute unique agreements or contracts with interested third-party applications using their <abbr title="Application Programming Interface">API</abbr> must disclose this practice as part of their terms of use.</li>
 <li>For the purposes of certification, a health IT developer is accountable for documenting and making public the provisions of its <abbr title="Application Programming Interface">API</abbr>’s terms of use. If, post-certification, a health IT developer permits its customers to deploy and integrate its <abbr title="Application Programming Interface">API</abbr> in ways where the customer would be able to layer on its own specific terms of use unique to that organization, the health IT developer would need to disclose this business practice in its terms of use. A health IT developer is NOT expected to change or factor instances into its terms of use where its customers establish additional, organizational-specific terms for the <abbr title="Application Programming Interface">API</abbr>’s use.</li>
-<li>Pursuant to the certification criterion’s documentation requirement, health IT developers are required to make their <abbr title="Application Programming Interface">API</abbr> documentation publicly available, including terms of use (and its associated policies and required developer agreements). Developers’ enforcement of their terms of use is beyond the scope of conformance to this certification criterion. This criterion focuses on the technical <abbr title="Application Programming Interface">API</abbr> capabilities with which a Health IT Module must be in compliance and documentation requirements as specified. For example, this certification criterion does not require health IT developers to evaluate app developers or prohibit such activity (though such activities may implicate other requirements of the Program). We also note that CMS, specifically in the patient access context, states that “[p]roviders may not prohibit patients from using any application, including third-party applications, which meet the technical specifications of the <abbr title="Application Programming Interface">API</abbr>, including the security requirements of the <abbr title="Application Programming Interface">API</abbr>.”3</li>
+<li>Pursuant to the certification criterion’s documentation requirement, health IT developers are required to make their <abbr title="Application Programming Interface">API</abbr> documentation publicly available, including terms of use (and its associated policies and required developer agreements). Developers’ enforcement of their terms of use is beyond the scope of conformance to this certification criterion. This criterion focuses on the technical <abbr title="Application Programming Interface">API</abbr> capabilities with which a Health IT Module must be in compliance and documentation requirements as specified. For example, this certification criterion does not require health IT developers to evaluate app developers or prohibit such activity (though such activities may implicate other requirements of the Program). We also note that CMS, <a href="https://www.cms.gov/Regulations-and-Guidance/Legislation/EHRIncentivePrograms/Downloads/MedicaidEPStage3_Obj5.pdf" target="_blank">specifically in the patient access context</a>, states that “[p]roviders may not prohibit patients from using any application, including third-party applications, which meet the technical specifications of the <abbr title="Application Programming Interface">API</abbr>, including the security requirements of the <abbr title="Application Programming Interface">API</abbr>.”</li>
 </ul>
 </details>
 <h3 id="documentation-requirements-availability">Documentation Requirements (Availability)<a class="headerlink" href="#documentation-requirements-availability" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A)(2)</strong></summary><p>(B) The documentation used to meet paragraph (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A) of this section must be available via a publicly accessible hyperlink.</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(B)</em></summary><ul>
 <li>The hyperlink provided for all of the documentation referenced by provision (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A) must reflect the most current version of the Health IT developer’s documentation.</li>
 <li>All of the documentation referenced by provision (<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>)(ii)(A) must be accessible to the public via a hyperlink without additional access requirements, including, without limitation, any form of registration, account creation, “click-through” agreements, or requirement to provide contact details or other information prior to accessing the documentation.</li>

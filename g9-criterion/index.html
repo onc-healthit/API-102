@@ -201,6 +201,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../helpful-links/" class="md-nav__link">
+        Helpful Links
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../g10-criterion/" class="md-nav__link">
         HL7 FHIR API criterion - (g)(10)
       </a>
@@ -356,6 +371,36 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-world-testing-conditions-maintenance/" class="md-nav__link">
+        Real World Testing Condition and Maintenance of Certification
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../standards-version-advancement-process/" class="md-nav__link">
+        Standards Version Advancement Process
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -453,7 +498,9 @@
 <h2 id="information-and-clarifications">Information and Clarifications<a class="headerlink" href="#information-and-clarifications" title="Permanent link">&para;</a></h2>
 <h3 id="entire-criterion">Entire Criterion<a class="headerlink" href="#entire-criterion" title="Permanent link">&para;</a></h3>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to the entire criterion</em></summary><ul>
-<li>Security:<ul>
+<li>
+<p>Security:</p>
+<ul>
 <li>For the purposes of certification there is no conformance requirement related to the registration of third-party applications that use the application programming interfaces (<abbr title="Application Programming Interfaces">APIs</abbr>). If a Health IT module requires registration as a pre-condition for accessing the <abbr title="Application Programming Interfaces">APIs</abbr>, then, the process must be clearly specified in the <abbr title="Application Programming Interface">API</abbr> documentation as required by the criterion. We strongly believe that registration should not be used to block information sharing via <abbr title="Application Programming Interfaces">APIs</abbr>.</li>
 <li>This criterion does not currently include any security requirements beyond the privacy and security approach detailed above, but we encourage organizations to follow security best practices and implement security controls, such as penetration testing, encryption, audits, and monitoring as appropriate. We expect health IT developers to include information on how to securely use their <abbr title="Application Programming Interfaces">APIs</abbr> in the public documentation required by the certification criteria and follow industry best practices. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1072" target="_blank">80 FR 62676</a> and <a href="https://www.federalregister.gov/d/2020-07419/p-3518" target="_blank">85 FR 25642</a>]</li>
 <li>We strongly encourage developers to build security into their <abbr title="Application Programming Interfaces">APIs</abbr> following best practice guidance, such as the Department of Homeland Security’s Build Security In initiative.1 [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1084" target="_blank">80 FR 62677</a>]</li>
@@ -461,13 +508,17 @@
 <li><abbr title="Application Programming Interfaces">APIs</abbr> could be used when consent or authorization by an individual is required. In circumstances where there is a requirement to document a patient’s request or particular preferences, <abbr title="Application Programming Interfaces">APIs</abbr> can enable compliance with documentation requirements. The Health Insurance Portability and Accountability Act of 1996 Privacy Rule2 permits the use of electronic documents to qualify as writings for the purpose of proving signature, e.g., electronic signatures. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1094" target="_blank">80 FR 62677</a>]</li>
 </ul>
 </li>
-<li>The audit record should be able to distinguish the specific user who accessed the data using a third-party application through the certified <abbr title="Application Programming Interface">API</abbr> to meet the requirements of § 170.315(d)(2) or (d)(10).</li>
+<li>
+<p>The audit record should be able to distinguish the specific user who accessed the data using a third-party application through the certified <abbr title="Application Programming Interface">API</abbr> to meet the requirements of § 170.315(d)(2) or (d)(10).</p>
+</li>
 <li>A health IT developer must demonstrate the <abbr title="Application Programming Interface">API</abbr> functionality of the Health IT Module properly performs consistent with this certification criterion’s requirements. As part of the demonstration process, a health IT developer is permitted, but is not limited to, using existing tools for creating its own app or “client” to interact with the <abbr title="Application Programming Interface">API</abbr> or using a third-party application for demonstration.</li>
 <li>By requiring that documentation and terms of use be open and transparent to the public by requiring a hyperlink to such documentation to be published with the product on the <abbr title="Office of the National Coordinator for Health IT">ONC</abbr> Certified Health IT Product List, we hope to encourage an open ecosystem of diverse and innovative applications that can successfully and easily interact with different Health IT Modules’ <abbr title="Application Programming Interfaces">APIs</abbr>. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1112" target="_blank">80 FR 62679</a> and <a href="https://www.federalregister.gov/d/2020-07419/p-3518" target="_blank">85 FR 25642</a>]</li>
 <li>By no later than April 5, 2021, a Certified <abbr title="Application Programming Interface">API</abbr> Developer with Health IT Module(s) certified to the certification criteria in § 170.315(<abbr title="&quot;Non-standardized API certification criterion (patient selection)&quot;">g)(7</abbr>), (8), or (9) must comply with paragraph (a) of this section, including revisions to their existing business and technical <abbr title="Application Programming Interface">API</abbr> documentation and make such documentation available via a publicly accessible hyperlink that allows any person to directly access the information without any preconditions or additional steps.</li>
 </ul>
 </details>
 <h3 id="functional-requirements-data-categories">Functional Requirements (Data Categories)<a class="headerlink" href="#functional-requirements-data-categories" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(i)(A)</strong></summary><p>(i) Functional requirements. (A)(1) Respond to requests for patient data (based on an ID or other token) for all of the data classes expressed in the standards in § <abbr title="United States Core Data for Interoperability (USCDI)">170.213</abbr> at one time and return such data (according to the specified standards, where applicable) in a summary record formatted in accordance with § 170.205(a)(4) and (5) following the CCD document template, and as specified in paragraphs (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(i)(A)(3)(i) through (iii) of this section, or (2) The Common Clinical Data Set in accordance with paragraphs (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(i)(A)(3)(i) through (iv) of this section for the period before December 31, 2022, and (3) The following data classes: (i) Assessment and plan of treatment. In accordance with the “Assessment and Plan Section (V2)” of the standards specified in § 170.205(a)(4); or in accordance with the “Assessment Section (V2)” and “Plan of Treatment Section (V2)” of the standards specified in § 170.205(a)(4). (ii) Goals. In accordance with the “Goals Section” of the standards specified in § 170.205(a)(4). (iii) Health concerns. In accordance with the “Health Concerns Section” of the standards specified in § 170.205(a)(4). (iv) Unique device identifier(s) for a patient's implantable device(s). In accordance with the “Product Instance” in the “Procedure Activity Procedure Section” of the standards specified in § 170.205(a)(4).</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(i)(A)</em></summary><ul>
 <li>Please refer to the USCDI for the data standards that are required.</li>
 <li>The technology specifications should be designed and implemented in such a way as to return meaningful responses to queries, particularly with regard to exceptions and exception handling, and should make it easy for applications to discover what data exists for the patient. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1109" target="_blank">80 FR 62678</a>]</li>
@@ -476,6 +527,8 @@
 </ul>
 </details>
 <h3 id="functional-requirements-date-date-range">Functional Requirements (Date &amp; Date Range)<a class="headerlink" href="#functional-requirements-date-date-range" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(i)(B)</strong></summary><p>(B) Respond to requests for patient data associated with a specific date as well as requests for patient data within a specified date range.</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(i)(B)</em></summary><ul>
 <li>Health IT returning an entire patient record that does not reflect the specific date or date range requested is not permissible when a specific date or date range is requested. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1109" target="_blank">80 FR 62678</a>]</li>
 <li>The developer can determine the method and the amount of data by which the health IT uniquely identifies a patient. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1101" target="_blank">80 FR 62678</a>]</li>
@@ -484,16 +537,22 @@
 </ul>
 </details>
 <h3 id="documentation-requirements-api-interface">Documentation Requirements (<abbr title="Application Programming Interface">API</abbr> Interface)<a class="headerlink" href="#documentation-requirements-api-interface" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(A)(1)</strong></summary><p>(A) The <abbr title="Application Programming Interface">API</abbr> must include accompanying documentation that contains, at a minimum: (1) <abbr title="Application Programming Interface">API</abbr> syntax, function names, required and optional parameters and their data types, return variables and their types/structures, exceptions and exception handling methods and their returns.</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(A)(1)</em></summary><ul>
 <li>No additional clarifications available.</li>
 </ul>
 </details>
 <h3 id="documentation-requirements-api-interaction">Documentation Requirements (<abbr title="Application Programming Interface">API</abbr> Interaction)<a class="headerlink" href="#documentation-requirements-api-interaction" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(A)(2)</strong></summary><p>(2) The software components and configurations that would be necessary for an application to implement in order to be able to successfully interact with the <abbr title="Application Programming Interface">API</abbr> and process its response(s).</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(A)(2)</em></summary><ul>
 <li>No additional clarifications available.</li>
 </ul>
 </details>
 <h3 id="documentation-requirements-availability">Documentation Requirements (Availability)<a class="headerlink" href="#documentation-requirements-availability" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open"><summary><strong>Regulation text at § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(B)</strong></summary><p>(B) The documentation used to meet paragraph (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(A) of this section must be available via a publicly accessible hyperlink.</p>
+</details>
 <details class="quote"><summary><em>Clarifications included in the (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>) <abbr title="Certification Companion Guide">CCG</abbr> that apply to paragraph § 170.315(<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(B)</em></summary><ul>
 <li>The hyperlink provided for all of the documentation referenced by provision (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(A) must reflect the most current version of the Health IT developer’s documentation.</li>
 <li>All of the documentation referenced by provision (<abbr title="&quot;Non-standardized API certification criterion (all data request)&quot;">g)(9</abbr>)(ii)(A) must be accessible to the public via a hyperlink without additional access requirements, including, without limitation, any form of registration, account creation, “click-through” agreements, or requirement to provide contact details or other information prior to accessing the documentation.</li>
