@@ -28,6 +28,9 @@
 
 ### Functional Requirements (Data Categories)
 
+???+ quote "**Regulation text at § 170.315(g)(8)(i)(A)**"
+	(i) Functional requirements. (A) Respond to requests for patient data (based on an ID or other token) for each of the individual data categories specified in the Common Clinical Data Set and return the full set of data for that data category (according to the specified standards, where applicable) in a computable format.
+
 ??? quote "*Clarifications included in the (g)(8) CCG that apply to paragraph § 170.315(g)(8)(i)(A)*"
 	- Please refer to the 2015 Edition Common Clinical Data Set for the data standards that are required.
 	- There is no standard required for the format of the data category request, as long as the data returned are in a computable format (machine-readable format). [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1105" target="_blank">80 FR 62678</a>]
@@ -45,6 +48,9 @@
 
 ### Functional Requirements (Date & Date Range)
 
+???+ quote "**Regulation text at § 170.315(g)(8)(i)(B)**"
+	(B) Respond to requests for patient data associated with a specific date as well as requests for patient data within a specified date range.
+
 ??? quote "*Clarifications included in the (g)(8) CCG that apply to paragraph § 170.315(g)(8)(i)(B)*"
 	- Health IT returning an entire patient record that does not reflect the specific date or date range requested is not permissible when a specific date or date range is requested. [see also <a href="http://www.federalregister.gov/a/2015-25597/p-1109" target="_blank">80 FR 62678</a>]
 	- The API must be able to send, at a minimum all required data for a specified date range(s). We acknowledge that there will be organizational policies and/or safety best practices that will dictate additional data to be sent and when data is considered complete and/or ready for being sent. This should be appropriately described in the API documentation. However, returning no data on receipt of a valid date or date range, or sending an error message (which is equivalent to no data) is not permissible.
@@ -52,17 +58,26 @@
 
 ### Documentation Requirements (API Interface)
 
+???+ quote "**Regulation text at § 170.315(g)(8)(ii)(A)(1)**"
+	(A) The API must include accompanying documentation that contains, at a minimum: (1) API syntax, function names, required and optional parameters and their data types, return variables and their types/structures, exceptions and exception handling methods and their returns.
+
 ??? quote "*Clarifications included in the (g)(8) CCG that apply to paragraph § 170.315(g)(8)(ii)(A)(1)*"
 	- API documentation must include information for requesting patient data using date and date ranges.
 
 
 ### Documentation Requirements (API Interaction)
 
+???+ quote "**Regulation text at § 170.315(g)(8)(ii)(A)(2)**"
+	(2) The software components and configurations that would be necessary for an application to implement in order to be able to successfully interact with the API and process its response(s).
+
 ??? quote "*Clarifications included in the (g)(8) CCG that apply to paragraph § 170.315(g)(8)(ii)(A)(2)*"
 	- No additional clarifications available.
 
 
 ### Documentation Requirements (API Terms of Use)
+
+???+ quote "**Regulation text at § 170.315(g)(8)(ii)(A)(3)**"
+	(3) Terms of use. The terms of use for the API must be provided, including, at a minimum, any associated developer policies and required developer agreements.
 
 ??? quote "*Clarifications included in the (g)(8) CCG that apply to paragraph § 170.315(g)(8)(ii)(A)(3)*"
 	- Health IT developers must be clear and transparent about the general terms of agreements or contracts that will typically apply to all prospective third party applications.
@@ -72,6 +87,9 @@
 
 
 ### Documentation Requirements (Availability)
+
+???+ quote "**Regulation text at § 170.315(g)(8)(ii)(B)**"
+	(B) The documentation used to meet paragraph (g)(8)(ii)(A) of this section must be available via a publicly accessible hyperlink.
 
 ??? quote "*Clarifications included in the (g)(8) CCG that apply to paragraph § 170.315(g)(8)(ii)(B)*"
 	- The hyperlink provided for all of the documentation referenced by provision (g)(8)(ii)(A) must reflect the most current version of the Health IT developer’s documentation.

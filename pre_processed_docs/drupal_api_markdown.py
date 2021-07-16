@@ -104,7 +104,7 @@ def gather_data_from_web(criterion):
         data_json = None
         if call_api:
             data_json = requests.get("{}/{}?_format=json".format(data_url, entity_id["target_id"])).json()
-            time.sleep(2) # Buffer between API calls
+            time.sleep(1.2) # Buffer between API calls for 50 calls / minute
         else:
             with open('cached_test_files/cached_response.json') as f:
                 data_json = json.load(f)
