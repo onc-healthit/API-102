@@ -17,7 +17,7 @@ def read_to_line_end(input_str, pos):
     Parameters
     ----------
     input_str : str, required
-        String containing template file contense (default is None)
+        String containing template file contents (default is None)
 
     pos : int, required
         Integer represetning the position in the input_str we start
