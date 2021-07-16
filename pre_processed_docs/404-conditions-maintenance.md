@@ -98,7 +98,7 @@ $ref{404:CCG["(b) Maintenance of certification requirements—(1) Authenticity v
 ??? quote "*Clarifications included in the § 170.404 Certification Companion Guide (CCG) that apply to paragraph § 170.404(B)(2)*"
 $ref{404:CCG["(b) Maintenance of certification requirements—(2) Service base URL publication."], tabbed}
 
-### Rollout Of (G)(10)-Certifies APIs - § 170.404(B)(3)
+### Rollout Of (G)(10)-Certified APIs - § 170.404(B)(3)
 ???+ quote "**Regulation text at § 170.404(B)(2)**"
     (3) Rollout of (g)(10)-certified APIs. A Certified API Developer with certified API technology previously certified to the certification criterion in § 170.315(g)(8) must provide all API Information Sources with such certified API technology deployed with certified API technology certified to the certification criterion in § 170.315(g)(10) by no later than December 31, 2022.
 
