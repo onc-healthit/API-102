@@ -2,18 +2,7 @@ $criterion-endpoint{"test-method/standardized-api-patient-and-population-service
 
 # Standardized API Certification Criterion at § 170.315(g)(10)
 
-This section considers the standardized API for patient and population services certification criterion, including all of the content contained in the <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-1162">ONC Cures Act Final Rule API preamble</a>, the <a target = "_blank" href = "https://www.federalregister.gov/d/2020-24376/p-136">IFC API preamble</a>, and the regulation paragraphs in § 170.315(g)(10).
-
-## Summary 
-The criterion defined at § 170.315(g)(10) requires certified Health IT Modules to support: 
-
-- **Standardized API for Single Patient Services**
-
-    [This list of hyperlinks is not helpful. This should be a summary] The § 170.315(g)(10) certification criterion includes requirements for Health IT Modules to support an API for single patient services in <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3457">§ 170.315(g)(10)(i)(A)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3459">§ 170.315(g)(10)(ii)(A)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3461">§ 170.315(g)(10)(iii)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3462">§ 170.315(g)(10)(iv)(A)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3464">§ 170.315(g)(10)(v)(A)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3470">§ 170.315(g)(10)(vii)</a>, and <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3471">§ 170.315(g)(10)(viii)</a>.
-
-- **Standardized API for Multiple Patient Services**
-
-    [This list of hyperlinks is not helpful. This should be a summary] The § 170.315(g)(10) certification criterion includes requirements for Health IT Modules to support an API for multiple patient services in <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3458">§ 170.315(g)(10)(i)(B)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3460">§ 170.315(g)(10)(ii)(B)</a>, <a href = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3461">§ 170.315(g)(10)(iii)</a>, <a target = "_balnk" href = "https://www.federalregister.gov/d/2020-07419/p-3463">§ 170.315(g)(10)(iv)(B)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3468">§ 170.315(g)(10)(v)(B)</a>, <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3470">§ 170.315(g)(10)(vii)</a>, and <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-3471">§ 170.315(g)(10)(viii)</a>.
+This section considers the standardized API for patient and population services certification criterion, including all of the content contained in the <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-1162">ONC Cures Act Final Rule API preamble</a>, the <a target = "_blank" href = "https://www.federalregister.gov/d/2020-24376/p-136">IFC API preamble</a>, and the <a target = "_blank" href = "https://ecfr.federalregister.gov/current/title-45/subtitle-A/subchapter-D/part-170/subpart-C/section-170.315#p-170.315(g)(10)">regulation paragraphs in § 170.315(g)(10)</a>.
 
 ## Applicability
 § 170.315(g)(10) is for all health IT developers who are certifying to the EHR base definition.
@@ -87,7 +76,7 @@ $ref{g-10:CCG["Paragraph (10)(ii)(B)"], tabbed}
 
 - The scope of data available in the data responses defined in § 170.315(g)(10)(i) must be supported for searches for multiple patients via the supported search operations finalized in § 170.315(g)(10)(ii).
 - The HL7 FHIR Bulk Data Access (Flat FHIR) (v1.0.0: STU 1) implementation specification adopted in § 170.215(a)(4) includes mandatory support for the “group-export” "OperationDefinition."
-- We have not included a requirement for Bulk FHIR import because the standards for these features are still being developed by industry. Applications or systems seeking to import information formatting according to the <a taregt = "_blank" href = "http://www.hl7.org/fhir/uv/bulkdata/history.cfml">HL7® FHIR Bulk Data Access (Flat FHIR) (V1.0.0:STU 1)</a> can use several methods developed by industry, or can refer to Bulk FHIR import methods being defined by <a target = "_blank" href = "https://github.com/HL7/bulk-data">HL7 at the HL7 FHIR Bulk Data GitHub page</a>.
+- We have not included a requirement for Bulk FHIR import because the standards for these features are still being developed by industry. Applications or systems seeking to import information formatting according to the <a target = "_blank" href = "http://www.hl7.org/fhir/uv/bulkdata/history.cfml">HL7® FHIR Bulk Data Access (Flat FHIR) (V1.0.0:STU 1)</a> can use several methods developed by industry, or can refer to Bulk FHIR import methods being defined by <a target = "_blank" href = "https://github.com/HL7/bulk-data">HL7 at the HL7 FHIR Bulk Data GitHub page</a>.
 
 ### Application Registration
 ???+ quote "**Regulation text at § 170.315(g)(10)(iii)**"
@@ -100,7 +89,7 @@ $ref{g-10:CCG["Paragraph (10)(iii)"], tabbed}
 
 - We expect that apps executed within an implementer’s clinical environment will be registered with an authorization server, but we do not require a health IT developer to demonstrate its registration process for these “provider-facing” apps.
 - The requirement that health IT developers must enable an application to register with the § 170.315(g)(10)-certified Health IT Module’s authorization server only applies for the purposes of demonstrating technical conformance to the finalized certification criterion and API Condition and Maintenance of Certification requirements. The practices by all parties (including implementers of Health IT Modules) other than developers of certified Health IT Modules are not in scope for this certification criterion nor the associated Condition and Maintenance of Certification requirements.
-- Any practices associated with third-party application review or “vetting” by implementers must not violate the <a target = "_blank" href = "https://www.ecfr.gov/cgi-bin/text-idx?SID=034c12732e5cb9328303ecdf94ecde87&mc=true&tpl=/ecfrbrowse/Title45/45cfr171_main_02.tpl">information blocking provisions</a> established in the <a tagret = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-1665">ONC Cures Act Final Rule</a>.
+- Any practices associated with third-party application review or “vetting” by implementers must not violate the <a target = "_blank" href = "https://www.ecfr.gov/cgi-bin/text-idx?SID=034c12732e5cb9328303ecdf94ecde87&mc=true&tpl=/ecfrbrowse/Title45/45cfr171_main_02.tpl">information blocking provisions</a> established in the <a target = "_blank" href = "https://www.federalregister.gov/d/2020-07419/p-1665">ONC Cures Act Final Rule</a>.
 
 ### Secure Connection (Patient / User Scopes)
 ???+ quote "**Regulation text at § 170.315(g)(10)(iv)(A)**" 
